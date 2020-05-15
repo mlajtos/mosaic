@@ -4,7 +4,7 @@ import "./style.scss";
 import defaultFavicon from "./default-favicon.png";
 
 export default ({ source }: { source: string[] }) => {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState(defaultFavicon);
 
   useEffect(() => {
     const hasFavicon = source.length > 0;
@@ -19,5 +19,7 @@ export default ({ source }: { source: string[] }) => {
     setUrl(defaultFavicon);
   }, []);
 
-  return <img className="Favicon" src={url} onError={handleError} />;
+  return (
+    <img className={`Favicon ${url === defaultFavicon ? "default" : ""}`} src={url} onError={handleError} />
+  );
 };

@@ -1,5 +1,13 @@
 .Favicon {
-    object-fit: contain;
-    width: 2rem;
-    height: 2rem;
+  object-fit: contain;
+  width: 2rem;
+  height: 2rem;
+
+  &.default {
+    @media (prefers-color-scheme: dark) {
+      & {
+        filter: invert(1.0);
+      }
+    }
+  }
 }

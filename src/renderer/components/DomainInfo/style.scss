@@ -2,6 +2,8 @@
   flex: 1;
   color: #00000078;
   font-size: 0.8rem;
+  display: flex;
+  align-items: center;
 
   @media (prefers-color-scheme: dark) {
     & {
@@ -9,8 +11,13 @@
     }
   }
 
+  .Hostname {
+    flex: 1;
+  }
+
   img {
     width: 0.8em;
+    height: 0.8em;
     margin: 0 0.2em;
 
     &.secure {

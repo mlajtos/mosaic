@@ -16,7 +16,7 @@ export default ({ url }: { url: string }) => {
     return (
       <div className="DomainInfo">
         <img className={isSecure ? "secure" : "insecure"} src={isSecure ? locked : unlocked} />
-        <CollapsibleText>{strippedHostname}</CollapsibleText>
+        <CollapsibleText className="Hostname">{strippedHostname}</CollapsibleText>
       </div>
     );
   } catch {
