@@ -1,0 +1,29 @@
+input.QueryField {
+  font-size: 0.9rem;
+  padding: 0 1rem;
+  border: none;
+  background: transparent;
+  color: #000000ab;
+  border-radius: 3px;
+  flex: 1;
+  text-overflow: ellipsis;
+  outline: none;
+  user-select: none;
+  height: 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+
+  &:focus {
+    box-shadow: inset 1px 1px 1px #00000054;
+    background: #f1f1f1;
+    color: #000000d1;
+    user-select: unset;
+
+    @media (prefers-color-scheme: dark) {
+      & {
+        background: #525252;
+        color: #ffffffd1;
+      }
+    }
+  }
+}

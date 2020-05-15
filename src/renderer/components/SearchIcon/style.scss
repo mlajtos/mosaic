@@ -1,0 +1,10 @@
+.SearchIcon {
+  width: 2rem;
+  height: 2rem;
+
+  @media (prefers-color-scheme: dark) {
+    & {
+      filter: invert(1);
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.DomainInfo {
+  flex: 1;
+  color: #00000078;
+  font-size: 0.8rem;
+
+  @media (prefers-color-scheme: dark) {
+    & {
+      color: rgba(169, 169, 169, 0.89);
+    }
+  }
+
+  img {
+    width: 0.8em;
+    margin: 0 0.2em;
+
+    &.secure {
+      filter: brightness(1) invert(0.7) sepia(0.3) hue-rotate(100deg) saturate(1000%) contrast(0.5);
+    }
+
+    &.insecure {
+      filter: brightness(1) invert(0.6) sepia(1) hue-rotate(310deg) saturate(1000%) contrast(0.9);
+    }
+  }
+}

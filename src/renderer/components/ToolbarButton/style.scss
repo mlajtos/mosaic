@@ -1,0 +1,29 @@
+.ToolbarButton {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    user-select: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+
+    span {
+        width: 2rem;
+        height: 2rem;
+        line-height: 2rem;
+        font-size: 1rem;
+        color: #6f6f6f;
+        border-radius: 50%;
+        font-weight: bold;
+    }
+
+    &:hover {
+
+        span {
+            color: black;
+            background-color: #0000001f;
+        }
+    }
+}
