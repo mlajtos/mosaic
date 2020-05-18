@@ -13,6 +13,8 @@ function createMainWindow() {
   const window = new BrowserWindow({
     // cannot access iframes without turning off websecurity
     webPreferences: { nodeIntegration: true, webSecurity: false, webviewTag: true },
+    frame: false,
+    titleBarStyle: 'hidden'
   });
 
   window.maximize();
@@ -96,7 +98,6 @@ app.on("ready", () => {
 
 // cannot access iframe content without this
 app.commandLine.appendSwitch("disable-site-isolation-trials");
-
 
 // Electron 9 will have it as default, and I am tired of the console message
 app.allowRendererProcessReuse = true;

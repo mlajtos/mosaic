@@ -1,46 +1,40 @@
-# electron-webpack-quick-start
-> A bare minimum project structure to get started developing with [`electron-webpack`](https://github.com/electron-userland/electron-webpack).
+# Mosaic – Tiling Web Browser
 
-Thanks to the power of `electron-webpack` this template comes packed with...
+A tiling web browser for the rest of us.
 
-* Use of [`webpack-dev-server`](https://github.com/webpack/webpack-dev-server) for development
-* HMR for both `renderer` and `main` processes
-* Use of [`babel-preset-env`](https://github.com/babel/babel-preset-env) that is automatically configured based on your `electron` version
-* Use of [`electron-builder`](https://github.com/electron-userland/electron-builder) to package and build a distributable electron application
+[![](showcase/18-05-2020.png)](showcase/18-05-2020.png)
 
-Make sure to check out [`electron-webpack`'s documentation](https://webpack.electron.build/) for more details.
+## Features
 
-## Getting Started
-Simply clone down this repository, install dependencies, and get started on your application.
+- [x] mouse-friendly tile managment
+- [x] minimalistic look
+- [x] new tile shortcut (⌘T)
+- [ ] page name and favicon in tile header
+- [ ] functional dock
+- [ ] close tile shortcut (⌘W)
+- [ ] URL bar
+- [ ] back, forward shortcuts (⌘←, ⌘→)
+- [ ] system keychain integration
+- [ ] automatic zoom-to-fit
+- [ ] find on a page (⌘F)
+- [ ] visual non-linear history
+- [ ] tile persistance
+- [ ] built-in adblock
+- [ ] "no tiles" screen
+- [ ] zen mode – temporary showing only single tile
 
-The use of the [yarn](https://yarnpkg.com/) package manager is **strongly** recommended, as opposed to using `npm`.
+## Inspiration
+* https://www.behance.net/gallery/96719491/Cliqz-Browser-20-A-Better-Browsing-Experience?tracking_source=search_projects_recommended%7Cweb%20browser
+* https://www.behance.net/gallery/5033195/Tabbed-Browser-History?tracking_source=search_projects_recommended%7Cweb%20browser
+* https://twitter.com/everestpipkin/status/1261893242683109376
+* http://iamweidan.com/project/visualization_WebHistory.html
 
-```bash
-# create a directory of your choice, and copy template using curl
-mkdir new-electron-webpack-project && cd new-electron-webpack-project
-curl -fsSL https://github.com/electron-userland/electron-webpack-quick-start/archive/master.tar.gz | tar -xz --strip-components 1
+## FAQ
 
-# or copy template using git clone
-git clone https://github.com/electron-userland/electron-webpack-quick-start.git
-cd electron-webpack-quick-start
-rm -rf .git
+- **There is a browser named [NSCA Mosaic](https://en.wikipedia.org/wiki/Mosaic_(web_browser)).**
 
-# install dependencies
-yarn
-```
+    Yes, and that was not a question.
 
-### Development Scripts
+- **Do you plan to have XY feature?**
 
-```bash
-# run application in development mode
-yarn dev
-
-# compile source code and create webpack output
-yarn compile
-
-# `yarn compile` & create build with electron-builder
-yarn dist
-
-# `yarn compile` & create unpacked build with electron-builder
-yarn dist:dir
-```
+    No.

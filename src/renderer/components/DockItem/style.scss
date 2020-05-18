@@ -1,0 +1,11 @@
+.DockItem {
+  display: flex;
+  margin-top: 10px;
+  max-width: 70px;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}

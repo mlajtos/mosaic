@@ -1,0 +1,14 @@
+$traficLightsHorizontalOffset: 70px;
+$traficLightsVerticalOffset: 20px;
+$horizontalPadding: 10px;
+
+#Dock {
+  width: $traficLightsHorizontalOffset - $horizontalPadding * 2;
+  height: calc(100vh - $traficLightsVerticalOffset);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: $traficLightsVerticalOffset $horizontalPadding 0;
+}
