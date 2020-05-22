@@ -26,7 +26,6 @@ import "./base.scss";
 import "./dark-theme.scss";
 import { useEventListener } from "../OLD_Tile/utils";
 import { isShortcut } from "./utils";
-import DockItem from "../DockItem";
 import GoogleLauncher from "../GoogleLauncher";
 import Surface from "../Surface";
 
