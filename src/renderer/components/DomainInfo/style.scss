@@ -1,15 +1,12 @@
+@use 'sass:color';
+@use "../App/colors.scss";
+
 .DomainInfo {
   flex: 1;
-  color: #00000078;
   font-size: 0.8rem;
   display: flex;
   align-items: center;
-
-  @media (prefers-color-scheme: dark) {
-    & {
-      color: rgba(169, 169, 169, 0.89);
-    }
-  }
+  color: color.adjust(colors.$activeTileForeground, $alpha: -0.5);
 
   .Hostname {
     flex: 1;
