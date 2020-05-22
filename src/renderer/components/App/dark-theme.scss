@@ -37,11 +37,8 @@
   cursor: pointer;
 }
 .lm_header .lm_tab {
-  font-family: Arial, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   color: #999999;
-  background: #111111;
-  box-shadow: 2px -2px 2px rgba(0, 0, 0, 0.3);
   margin-right: 2px;
   padding-bottom: 2px;
   padding-top: 2px;
@@ -61,7 +58,6 @@
 }
 .lm_header .lm_tab.lm_active {
   border-bottom: none;
-  box-shadow: 0 -2px 2px #000000;
   padding-bottom: 3px;
 }
 .lm_header .lm_tab.lm_active .lm_close_tab {
@@ -80,11 +76,11 @@
 }
 .lm_tab.lm_active {
   background: colors.$activeTileBackground;
-  color: #dddddd;
+  color: colors.$activeTileForeground;
+  border-radius: 3px 3px 0 0;
 }
-.lm_tab:hover {
-  background: #222222;
-  color: #dddddd;
+.lm_tab:not(.lm_active):hover {
+  background: colors.$inactiveTileBackgroundHover;
 }
 .lm_header .lm_controls .lm_tabdropdown:before {
   color: #ffffff;
@@ -101,13 +97,9 @@
 }
 .lm_controls .lm_popout {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAPklEQVR4nI2Q0QoAIAwCNfr/X7aXCpGN8snBdgejJOzckpkxs9jR6K6T5JpU0nWl5pSXTk7qwh8SnNT+CAAWCgkKFpuSWsUAAAAASUVORK5CYII=);
-
-  display: none;
 }
 .lm_controls .lm_maximise {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAKElEQVR4nGP8////fwYCgImQAgYGBgYWKM2IR81/okwajIpgvsMbVgAwgQYRVakEKQAAAABJRU5ErkJggg==);
-
-  display: none;
 }
 .lm_controls .lm_close {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAQUlEQVR4nHXOQQ4AMAgCQeT/f6aXpsGK3jSTuCVJAAr7iBdoAwCKd0nwfaAdHbYERw5b44+E8JoBjEYGMBq5gAYP3usUDu2IvoUAAAAASUVORK5CYII=);
