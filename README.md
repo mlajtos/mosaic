@@ -6,13 +6,16 @@ A tiling web browser for the rest of us.
 
 ## Features
 
+- [x] included [Architectural Design Decisions](ADD.md)
 - [x] mouse-friendly tile managment
 - [x] minimalistic look
 - [x] new tile shortcut (⌘T)
-- [ ] page name and favicon in tile header
-- [ ] functional dock
 - [ ] close tile shortcut (⌘W)
-- [ ] URL bar
+- [x] URL bar
+    - [ ] polished
+- [ ] page name and favicon in tile header
+- [ ] switch tiles by dragging
+- [ ] functional dock
 - [ ] back, forward shortcuts (⌘←, ⌘→)
 - [ ] system keychain integration
 - [ ] automatic zoom-to-fit
@@ -28,13 +31,16 @@ A tiling web browser for the rest of us.
 * https://www.behance.net/gallery/5033195/Tabbed-Browser-History?tracking_source=search_projects_recommended%7Cweb%20browser
 * https://twitter.com/everestpipkin/status/1261893242683109376
 * http://iamweidan.com/project/visualization_WebHistory.html
+* https://help.vivaldi.com/article/history/
+* https://dothq.co/ – Looks like vaporware, but with a beautiful landing page.
 
 ## FAQ
-
-- **There is a browser named [NSCA Mosaic](https://en.wikipedia.org/wiki/Mosaic_(web_browser)).**
-
-    Yes, and that was not a question.
 
 - **Do you plan to have XY feature?**
 
     No.
+
+## Crazy ideas
+- **Visual clipboard** – drag&drop into clipboard situated in a near-by panel. Should be great for researching stuff.
+- **Social browsing** – you'll be able to interact with people visiting the same site in real-time.
+- **Visual non-linear history** – history that can branch like a git repo, always preserved navigation metadata, i.e. answering questions like *"How did I get there?"*, *"What did I do there?"*.
