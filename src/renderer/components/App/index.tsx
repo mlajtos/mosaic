@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import GoldenLayout from "golden-layout";
+import { ipcRenderer } from "electron";
 
 // meh
 window.ReactDOM = ReactDOM;
