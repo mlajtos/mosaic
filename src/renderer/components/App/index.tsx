@@ -28,6 +28,10 @@ const useShortcut = (shortcuts: Record<string, () => void>) => {
   }, []);
 };
 const config = {
+  settings: {
+    showPopoutIcon: false,
+    showMaximiseIcon: false,
+  },
   content: [
     {
       type: "stack",
