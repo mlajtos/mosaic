@@ -6,20 +6,10 @@ import GoldenLayout from "golden-layout";
 window.ReactDOM = ReactDOM;
 window.React = React;
 
-import Tile from "../Tile";
 import TileContainer from "../TileContainer";
 import LayoutContainer, { getLayoutContainer } from "../LayoutContainer";
-import Webview from "../Webview";
+import WebviewTile from "../WebviewTile";
 import Dock from "../Dock";
-
-const WebviewTile = () => {
-  const webviewRef = useRef<HTMLWebViewElement>(null);
-  return (
-    <Tile onKeyDown={(e) => console.log("mu", e)}>
-      <Webview $ref={webviewRef} />
-    </Tile>
-  );
-};
 
 import "./style.scss";
 import "./base.scss";
