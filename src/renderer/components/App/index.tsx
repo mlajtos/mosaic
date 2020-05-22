@@ -20,6 +20,13 @@ import { isShortcut } from "./utils";
 import GoogleLauncher from "../GoogleLauncher";
 import Surface from "../Surface";
 
+const useShortcut = (shortcuts: Record<string, () => void>) => {
+  useEffect(() => {
+    ipcRenderer.on("shortcut", (event, shortcutName) => {
+      shortcuts?.[shortcutName]?.();
+    });
+  }, []);
+};
 const config = {
   content: [
     {
