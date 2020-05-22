@@ -1,0 +1,9 @@
+@use 'sass:color';
+@use "../App/colors.scss";
+
+.PageTitle {
+  font-weight: 500;
+  color: color.adjust(colors.$activeTileForeground, $alpha: -0.2);
+  font-size: 1.1rem;
+  flex: 1;
+}
