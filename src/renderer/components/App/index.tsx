@@ -8,8 +8,8 @@ window.React = React;
 
 import TileContainer from "../TileContainer";
 import LayoutContainer, { getLayoutContainer } from "../LayoutContainer";
-import WebviewTile from "../WebviewTile";
 import Dock from "../Dock";
+import WebviewTile from "../WebviewTile";
 
 import "./style.scss";
 import "./base.scss";
