@@ -1,7 +1,11 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import "./style.scss";
 
-export default ({ children }: { children: React.ReactNode }) => {
-  return <div className="DockItem">{children}</div>;
-};
+export default forwardRef<HTMLDivElement, { children: React.ReactNode }>(({ children }, ref) => {
+  return (
+    <div ref={ref} className="DockItem">
+      {children}
+    </div>
+  );
+});

@@ -99,7 +99,7 @@ export default () => {
   return (
     <div className="Container">
       <Dock>
-        <GoogleLauncher />
+        <GoogleLauncher layout={layout} />
       </Dock>
       <Surface>
         <LayoutContainer />
