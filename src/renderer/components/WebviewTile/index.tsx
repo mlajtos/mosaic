@@ -45,8 +45,6 @@ export default ({ container }: { container: GoldenLayout.Container }) => {
               <PageTitle>Aloha</PageTitle>
               <DomainInfo url={url} />
             </div>
-            <ToolbarButton onClick={() => ({})}>+</ToolbarButton>
-            <ToolbarButton onClick={() => ({})}>split</ToolbarButton>
             <ToolbarButton onClick={() => {}}>←</ToolbarButton>
             <ToolbarButton onClick={() => {}}>→</ToolbarButton>
           </>
