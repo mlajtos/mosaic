@@ -1,10 +1,10 @@
-const shortcuts = {
-  "focus-query-field": (e: React.KeyboardEvent<HTMLElement>) => e.key === "l" && e.metaKey,
-  "blur-query-field": (e: React.KeyboardEvent<HTMLElement>) => e.key === "Escape",
-  "new-tab": (e: React.KeyboardEvent<HTMLElement>) => e.key === "t" && e.metaKey,
-  "history-back": (e: React.KeyboardEvent<HTMLElement>) => e.key === "ArrowLeft" && e.metaKey,
-} as const;
+import { useEffect } from "react";
+import { ipcRenderer } from "electron";
 
-export const isShortcut = (shortcut: keyof typeof shortcuts, e: React.KeyboardEvent<HTMLElement>) => {
-  return shortcuts[shortcut]?.(e);
+export const useShortcut = (shortcuts: Record<string, () => void>) => {
+  useEffect(() => {
+    ipcRenderer.on("shortcut", (event, shortcutName) => {
+      shortcuts?.[shortcutName]?.();
+    });
+  }, []);
 };
