@@ -10,12 +10,7 @@ import PageTitle from "../PageTitle";
 
 const defaultUrl = "https://google.com/";
 
-export default ({ glContainer }) => {
-  useEffect(() => {
-    glContainer.on("tab", (tab) => {
-      console.log(glContainer, tab);
-    });
-  }, []);
+export default ({ container }: { container: GoldenLayout.Container }) => {
 
   const webviewRef = useRef<HTMLWebViewElement>(null);
   const [query, setQuery] = useState(defaultUrl);
@@ -23,7 +18,7 @@ export default ({ glContainer }) => {
   const [queryHasFocus, setQueryHasFocus] = useState(false);
   return (
     <Tile>
-      {/* <Toolbar>
+      <Toolbar>
         {queryHasFocus ? (
           <QueryField
             value={query}
@@ -56,7 +51,7 @@ export default ({ glContainer }) => {
             <ToolbarButton onClick={() => {}}>→</ToolbarButton>
           </>
         )}
-      </Toolbar> */}
+      </Toolbar>
       <Webview $ref={webviewRef} url={url} />
     </Tile>
   );
