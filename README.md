@@ -33,6 +33,7 @@ A tiling web browser for the rest of us.
 * http://iamweidan.com/project/visualization_WebHistory.html
 * https://help.vivaldi.com/article/history/
 * https://dothq.co/ – Looks like vaporware, but with a beautiful landing page.
+* https://getstack.app/ – Polished card-based browsing
 
 ## FAQ
 
