@@ -2,8 +2,6 @@ import React from "react";
 
 import "./style.scss";
 
-type Props = { children: string; className?: string };
+type Props = { children: string };
 
-export default ({ children, className }: Props) => (
-  <input className={`CollapsibleText ${className ?? ""}`} value={children} />
-);
+export default ({ children }: Props) => <input className="CollapsibleText" defaultValue={children} />;
