@@ -15,10 +15,14 @@ import WebviewTile from "../WebviewTile";
 import "./style.scss";
 import "./base.scss";
 import "./dark-theme.scss";
-import { useEventListener } from "../OLD_Tile/utils";
-import { isShortcut } from "./utils";
 import GoogleLauncher from "../GoogleLauncher";
 import Surface from "../Surface";
+
+const TileConfig = () => ({
+  title: "WebView",
+  type: "react-component",
+  component: "webview",
+})
 
 const useShortcut = (shortcuts: Record<string, () => void>) => {
   useEffect(() => {
@@ -27,6 +31,7 @@ const useShortcut = (shortcuts: Record<string, () => void>) => {
     });
   }, []);
 };
+
 const config = {
   settings: {
     showPopoutIcon: false,
@@ -72,30 +77,23 @@ export default () => {
     };
   }, []);
 
-  const docRef = useRef(document);
-  const on = useEventListener(docRef);
-  on(
-    "keydown",
-    (e) => {
-      console.log(e);
-      switch (true) {
-        case isShortcut("new-tab", e): {
-          const newItemConfig = {
-            title: "WebView",
-            type: "react-component",
-            component: "webview",
-          };
-          layout.current?.root.contentItems[0].addChild(newItemConfig);
-          break;
-        }
-        case isShortcut("history-back", e): {
-          console.log("back");
-          break;
-        }
-      }
+
+
+
+
+
+  useShortcut({
+    "new-tab": () => {
+      // FIX: actually new top-level child, not new tab
+      layout.current?.root.contentItems[0].addChild(TileConfig());
     },
-    true
-  );
+    "close-tab": () => {
+      // remove active
+      layout.current?.root.contentItems[0].addChild(TileConfig());
+      layout.current?.root.contentItems[0].addChild(TileConfig());
+      layout.current?.root.contentItems[0].addChild(TileConfig());
+    },
+  });
 
   return (
     <div className="Container">
