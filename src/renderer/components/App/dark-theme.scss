@@ -36,33 +36,7 @@
 .lm_header.lm_selectable {
   cursor: pointer;
 }
-.lm_header .lm_tab {
-  font-size: 14px;
-  color: #999999;
-  margin-right: 2px;
-  padding-bottom: 2px;
-  padding-top: 2px;
-}
-.lm_header .lm_tab .lm_close_tab {
-  width: 11px;
-  height: 11px;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAATElEQVR4nG3OwQ0DMQwDwZGRBtR/j1YJzMc5+IDoR+yCVO29g+pu981MFgqZmRdAfU7+CYWcbF11LwALjpBL0N0qybNx/RPU+gOeiS/+XCRwDlTgkQAAAABJRU5ErkJggg==);
-  background-position: center center;
-  background-repeat: no-repeat;
-  top: 4px;
-  right: 6px;
-  opacity: 0.4;
-}
-.lm_header .lm_tab .lm_close_tab:hover {
-  opacity: 1;
-}
-.lm_header .lm_tab.lm_active {
-  border-bottom: none;
-  padding-bottom: 3px;
-}
-.lm_header .lm_tab.lm_active .lm_close_tab {
-  opacity: 1;
-}
+
 .lm_dragProxy.lm_bottom .lm_header .lm_tab,
 .lm_stack.lm_bottom .lm_header .lm_tab {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
@@ -74,14 +48,7 @@
 .lm_selected .lm_header {
   background-color: #452500;
 }
-.lm_tab.lm_active {
-  background: colors.$activeTileBackground;
-  color: colors.$activeTileForeground;
-  border-radius: 3px 3px 0 0;
-}
-.lm_tab:not(.lm_active):hover {
-  background: colors.$inactiveTileBackgroundHover;
-}
+
 .lm_header .lm_controls .lm_tabdropdown:before {
   color: #ffffff;
 }
