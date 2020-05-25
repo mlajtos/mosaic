@@ -22,7 +22,6 @@ export default ({
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         const rect = entry.target.getBoundingClientRect();
-        console.log(rect);  
         setRect(rect);
       }
     });
