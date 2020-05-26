@@ -41,3 +41,9 @@
 **Problem:** Getting rid of the native title bar (having frame-less window) provides extra vertical screen space, which is precious. Preserving native window controls (traffic lights) is a must.
 
 **Solution**: Having kind of sidebar, in this case *dock*, which contains window controls was at first purely visual decision. Choping off much larger horizontal space is admisible while it also becomes functional. *Dock* is an active area, which holds actions for opening new tiles, or store some other content.
+
+## Golden Layout package
+
+**Problem:** Golden Layout from master has a bug/feature which manifests when dragging tabs. After tear, the proxy is created, but the teared tab stays in the header, which is super-confusing.
+
+**Solution:** Version of Golden Layout is fixed to v1.5.9, which is so far the latest stable version on the NPM.

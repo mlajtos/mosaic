@@ -29,7 +29,7 @@
     "electron-builder": "^22.6.0",
     "electron-webpack": "^2.8.2",
     "electron-webpack-ts": "^4.0.1",
-    "golden-layout": "^1.5.9",
+    "golden-layout": "1.5.9",
     "lodash": "^4.17.15",
     "lodash-redux-immutability": "^0.0.3",
     "react": "^16.13.1",
