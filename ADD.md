@@ -47,3 +47,9 @@
 **Problem:** Golden Layout from master has a bug/feature which manifests when dragging tabs. After tear, the proxy is created, but the teared tab stays in the header, which is super-confusing.
 
 **Solution:** Version of Golden Layout is fixed to v1.5.9, which is so far the latest stable version on the NPM.
+
+## Tabs rendered by React
+
+**Problem:** Tab in Golden Layout can display only text with predefined action (close) and is hard to customize.
+
+**Solution:** Hijack DOM node and render there through React.

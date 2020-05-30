@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from "recoil";
 
 import QueryField from "../QueryField";
 import Toolbar from "../Toolbar";
@@ -7,17 +8,45 @@ import Webview from "../Webview";
 import Tile from "../Tile";
 import ToolbarButton from "../ToolbarButton";
 import PageTitle from "../PageTitle";
+import { useEventListener } from "../OLD_Tile/utils";
+import Favicon from "../Favicon";
+import { textState } from "../App";
+import Tab from "../Tab";
+import ReactDOM from "react-dom";
 
 const defaultUrl = "https://google.com/";
+const Space = () => <div style={{ width: "0.5rem" }} />;
 
 export default ({ container }: { container: GoldenLayout.Container }) => {
-
   const webviewRef = useRef<HTMLWebViewElement>(null);
   const [query, setQuery] = useState(defaultUrl);
   const [url, setUrl] = useState(defaultUrl);
   const [queryHasFocus, setQueryHasFocus] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [favicons, setFavicons] = useState([]);
+
+  const [text, setText] = useRecoilState(textState);
+
+  const on = useEventListener(webviewRef);
+
+  on("did-start-loading", () => setIsLoading(true));
+  on("did-stop-loading", () => setIsLoading(false));
+  on("page-favicon-updated", ({ favicons }) => setFavicons(favicons));
+  on("will-navigate", ({ url }) => {
+    setFavicons([]);
+    setUrl(url);
+    setQuery(url);
+  });
+  on("will-navigate", ({ url }) => setUrl(url));
+  on("new-window", ({ url }) => {});
+
+  on("page-title-updated", ({ title }) => setText(title));
+
+
+
   return (
     <Tile>
+      {container.tab?.element[0] ? ReactDOM.createPortal(<Tab for={container} />, container.tab?.element[0]) : null}
       <Toolbar>
         {queryHasFocus ? (
           <QueryField
@@ -36,17 +65,33 @@ export default ({ container }: { container: GoldenLayout.Container }) => {
           />
         ) : (
           <>
+            <Space />
+            <Favicon source={favicons} />
+            <Space />
             <div
               onClick={() => {
                 setQueryHasFocus(true);
               }}
-              style={{ marginLeft: "1rem" }}
             >
-              <PageTitle>Aloha</PageTitle>
+              <PageTitle>{text}</PageTitle>
               <DomainInfo url={url} />
             </div>
-            <ToolbarButton onClick={() => {}}>←</ToolbarButton>
-            <ToolbarButton onClick={() => {}}>→</ToolbarButton>
+            <ToolbarButton
+              onClick={() => {
+                // @ts-ignore
+                webviewRef.current?.goBack();
+              }}
+            >
+              ←
+            </ToolbarButton>
+            <ToolbarButton
+              onClick={() => {
+                // @ts-ignore
+                webviewRef.current?.goForward();
+              }}
+            >
+              →
+            </ToolbarButton>
           </>
         )}
       </Toolbar>

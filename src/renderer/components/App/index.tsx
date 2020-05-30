@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import GoldenLayout from "golden-layout";
+import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from "recoil";
 
 // meh
 window.ReactDOM = ReactDOM;
@@ -18,7 +19,6 @@ import "./base.scss";
 import "./dark-theme.scss";
 
 import { useShortcut } from "./utils";
-import Tab from "../Tab";
 
 const TileConfig = () => ({
   title: "WebView",
@@ -26,9 +26,14 @@ const TileConfig = () => ({
   componentName: "webview",
 });
 
-const config:GoldenLayout.Config = {
+export const textState = atom({
+  key: "textState", // unique ID (with respect to other atoms/selectors)
+  default: "", // default value (aka initial value)
+});
+
+const config: GoldenLayout.Config = {
   dimensions: {
-    headerHeight: 25
+    headerHeight: 25,
   },
   settings: {
     showPopoutIcon: false,
@@ -42,23 +47,27 @@ const config:GoldenLayout.Config = {
   ],
 };
 
-const wrapComponent = (Component: React.ComponentType<any>) => {
-  return function (container: GoldenLayout.Container, state: any) {
-    container.on("tab", (tab: GoldenLayout.Tab) => {
-      ReactDOM.render(<Tab for={container} />, tab.element[0]);
-    });
+const WebtileComponent = function (container: GoldenLayout.Container, state: any) {
+  container.on("close", () => {
+    ReactDOM.unmountComponentAtNode(container.getElement()[0]);
+  });
 
-    const element = container.getElement()[0];
-    ReactDOM.render(<WebviewTile {...{ container, state }} />, element);
-  };
+  const element = container.getElement()[0];
+  ReactDOM.render(
+    <RecoilRoot>
+      <WebviewTile {...{ container, state }} />
+    </RecoilRoot>,
+    element
+  );
 };
 
 export default () => {
   const layout = useRef<GoldenLayout | null>(null);
+  const googleLauncher = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const goldenLayout = new GoldenLayout(config, getLayoutContainer());
-    goldenLayout.registerComponent("webview", wrapComponent(WebviewTile));
+    goldenLayout.registerComponent("webview", WebtileComponent);
     goldenLayout.init();
 
     goldenLayout.on("stateChanged", () => {
@@ -94,10 +103,14 @@ export default () => {
     },
   });
 
+  useEffect(() => {
+    layout.current?.createDragSource(googleLauncher.current, TileConfig());
+  }, []);
+
   return (
     <div className="Container">
       <Dock>
-        <GoogleLauncher layout={layout} />
+        <GoogleLauncher ref={googleLauncher} />
       </Dock>
       <Surface>
         <LayoutContainer />

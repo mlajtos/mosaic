@@ -12,6 +12,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
+    "recoil": "^0.0.7",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
@@ -19,9 +20,11 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "@blueprintjs/core": "^3.26.1",
+    "@react-hook/merged-ref": "^1.1.1",
     "@types/lodash": "^4.14.150",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "@types/recoil": "^0.0.0",
     "@types/uuid": "^7.0.3",
     "babel-loader": "^8.1.0",
     "easy-peasy": "^3.3.0",

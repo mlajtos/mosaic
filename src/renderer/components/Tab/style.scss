@@ -1,21 +1,44 @@
 @use "../App/colors.scss";
 
+.lm_header .lm_tab {
+  & i.lm_left,
+  & i.lm_right,
+  & .lm_title,
+  & .lm_close_tab {
+    display: none !important;
+  }
+}
+
 .Tab {
   display: flex;
   flex-direction: row;
   align-items: end;
   margin: 0.2rem 0 0 0;
-  padding: 0.1rem 0.5rem;
+  padding: 0.1rem 0.5rem 0.1em 0.7rem;
   border-radius: 3px 3px 0 0;
   color: colors.$inactiveTileForeground;
+  box-shadow: 1px -1px 1px 0px #ffffff40;
 
   .lm_tab.lm_active & {
     background: colors.$activeTileBackground;
     color: colors.$activeTileForeground;
+    box-shadow: inset 0px 0.5px 0px 0px colors.$activeTileHighlight,
+      inset 0px -0.5px 0px 0px rgba(26, 255, 124, 0), inset -0.5px 0px 0px 0px rgba(90, 90, 90, 0.17),
+      inset 0.5px 0px 0px 0px rgba(90, 90, 90, 0.17);
+
+    // google-styled tab
+    // box-shadow: inset 0px 0.5px 0px 0px rgba(255, 0, 0, 0.8), inset 0px -0.5px 0px 0px rgba(26, 255, 124, 0.8), inset -0.5px 0px 0px 0px rgba(0, 13, 255, 0.8), inset 0.5px 0px 0px 0px rgba(240, 255, 0, 0.8);
+  }
+
+  .lm_tab:not(.lm_active) & {
+    border-radius: 0;
+    box-shadow: 0.5px 1.5px 0.5px 0px colors.$inactiveTileHighlight;
+    background-color: transparent;
   }
 
   .lm_tab:not(.lm_active):hover & {
     background: colors.$inactiveTileBackgroundHover;
+    box-shadow: inset 1px -0.5px 0.5px -0.5px colors.$inactiveTileBackgroundHover;
   }
 
   .Close {
@@ -24,7 +47,7 @@
     transform: scale(0.8);
 
     &:hover {
-        opacity: 1;
+      opacity: 1;
     }
   }
 

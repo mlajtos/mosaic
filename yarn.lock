@@ -1181,6 +1181,11 @@
   resolved "https://registry.npmjs.org/@react-dnd/shallowequal/-/shallowequal-2.0.0.tgz#a3031eb54129f2c66b2753f8404266ec7bf67f0a"
   integrity sha512-Pc/AFTdwZwEKJxFJvlxrSmGe/di+aAOBn60sremrpLo6VI/6cmiUYNNwlI5KNYttg7uypzA3ILPMPgxB2GYZEg==
 
+"@react-hook/merged-ref@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@react-hook/merged-ref/-/merged-ref-1.1.1.tgz#8632979c27f355e1124d824370d360be50eeb135"
+  integrity sha512-7NL2ufs37s3uPFMOSgTNjkSDXtz1HLvHeDYLmNLItbmFDrCZyu97B7lL+oNPfg4c/Rgi0YqqShvDj5mmpJeJAw==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
@@ -1294,6 +1299,13 @@
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
+
+"@types/recoil@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.npmjs.org/@types/recoil/-/recoil-0.0.0.tgz#1a77a5d50d6a398b7b16b4464e516761efcbab8d"
+  integrity sha512-i00Sidw/UDe6jxCJrY5HotFfKIMIbKHGf5chJw7AsxdHe7G8m/ot71AcnbLOS1rLTtnXnENQcf8upKYsGJNvyA==
+  dependencies:
+    "@types/react" "*"
 
 "@types/source-list-map@*":
   version "0.1.2"
@@ -3890,7 +3902,7 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-golden-layout@^1.5.9:
+golden-layout@1.5.9:
   version "1.5.9"
   resolved "https://registry.npmjs.org/golden-layout/-/golden-layout-1.5.9.tgz#a39bc1f6a67e6f886b797c016dd924e9426ba77f"
   integrity sha1-o5vB9qZ+b4hreXwBbdkk6UJrp38=
@@ -6235,6 +6247,11 @@ readdirp@~3.4.0:
   integrity sha512-0xe001vZBnJEK+uKcj8qOhyAKPzIT+gStxWr3LCB0DwcXR5NZJ3IaC+yGnHCYzB/S7ov3m3EEbZI2zeNvX+hGQ==
   dependencies:
     picomatch "^2.2.1"
+
+recoil@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.npmjs.org/recoil/-/recoil-0.0.7.tgz#197066ac0a983e4728f5973033bbe5b40a277d40"
+  integrity sha512-U/0kniHLk131hKhAX35QGdghVf3+PSkLcFIFoNBNy+yv62qCLm3TE5c3v4x4WYzuKgw1fxU3GGhKHAUYdyRnTQ==
 
 redux-thunk@^2.3.0:
   version "2.3.0"
