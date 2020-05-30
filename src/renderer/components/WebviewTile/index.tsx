@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 import QueryField from "../QueryField";
 import Toolbar from "../Toolbar";

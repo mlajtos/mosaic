@@ -3,10 +3,6 @@ import ReactDOM from "react-dom";
 import GoldenLayout from "golden-layout";
 import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from "recoil";
 
-// meh
-window.ReactDOM = ReactDOM;
-window.React = React;
-
 import TileContainer from "../TileContainer";
 import LayoutContainer, { getLayoutContainer } from "../LayoutContainer";
 import Dock from "../Dock";
@@ -27,8 +23,8 @@ const TileConfig = () => ({
 });
 
 export const textState = atom({
-  key: "textState", // unique ID (with respect to other atoms/selectors)
-  default: "", // default value (aka initial value)
+  key: "textState",
+  default: "",
 });
 
 const config: GoldenLayout.Config = {
@@ -48,11 +44,12 @@ const config: GoldenLayout.Config = {
 };
 
 const WebtileComponent = function (container: GoldenLayout.Container, state: any) {
+  const element = container.getElement()[0];
+
   container.on("close", () => {
-    ReactDOM.unmountComponentAtNode(container.getElement()[0]);
+    ReactDOM.unmountComponentAtNode(element);
   });
 
-  const element = container.getElement()[0];
   ReactDOM.render(
     <RecoilRoot>
       <WebviewTile {...{ container, state }} />
