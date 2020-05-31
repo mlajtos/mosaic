@@ -19,5 +19,4 @@ export const useEventListener = (webViewRef: RefObject<HTMLWebViewElement>) => (
   }, deps);
 };
 
-
 export const zoomToFit = (el: HTMLElement) => (el.style.zoom = (el.clientWidth / el.scrollWidth).toString());

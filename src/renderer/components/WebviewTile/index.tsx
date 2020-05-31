@@ -1,4 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
+import ReactDOM from "react-dom";
+import GoldenLayout from "golden-layout";
 import { useRecoilState } from "recoil";
 
 import QueryField from "../QueryField";
@@ -8,11 +10,11 @@ import Webview from "../Webview";
 import Tile from "../Tile";
 import ToolbarButton from "../ToolbarButton";
 import PageTitle from "../PageTitle";
-import { useEventListener } from "../OLD_Tile/utils";
 import Favicon from "../Favicon";
 import { textState } from "../App";
 import Tab from "../Tab";
-import ReactDOM from "react-dom";
+
+import { useEventListener } from "./utils";
 
 const defaultUrl = "https://google.com/";
 const Space = () => <div style={{ width: "0.5rem" }} />;
