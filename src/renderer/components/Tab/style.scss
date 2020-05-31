@@ -15,6 +15,7 @@
   align-items: end;
   margin: 0.2rem 0 0 0;
   padding: 0.1rem 0.5rem 0.1em 0.7rem;
+  max-width: 15rem;
   border-radius: 3px 3px 0 0;
   color: colors.$inactiveTileForeground;
   box-shadow: 1px -1px 1px 0px #ffffff40;
@@ -32,13 +33,15 @@
 
   .lm_tab:not(.lm_active) & {
     border-radius: 0;
-    box-shadow: 0.5px 1.5px 0.5px 0px colors.$inactiveTileHighlight;
+    box-shadow: 0.5px 1.5px 0.5px 0px colors.$inactiveTileHighlight, inset 1px -0.5px 0.5px -0.5px transparent;
     background-color: transparent;
+    transition: all 0.25s ease-out;
   }
 
   .lm_tab:not(.lm_active):hover & {
     background: colors.$inactiveTileBackgroundHover;
-    box-shadow: inset 1px -0.5px 0.5px -0.5px colors.$inactiveTileBackgroundHover;
+    box-shadow: 0.5px 1.5px 0 0 transparent, inset 1px -0.5px 0.5px -0.5px colors.$inactiveTileBackgroundHover;
+    border-radius: 3px 3px 0 0;
   }
 
   .Close {
