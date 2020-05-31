@@ -6,6 +6,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
 import { useRecoilState } from "recoil";
 import { textState } from "../App";
+import CollapsibleText from "../CollapsibleText";
 
 export default ({ for: container }: { for: GoldenLayout.Container }) => {
 
@@ -13,7 +14,8 @@ export default ({ for: container }: { for: GoldenLayout.Container }) => {
   
   return (
     <div className="Tab">
-      <div className="Title">{text}</div>
+      {/* <div className="Title"></div> */}
+      <CollapsibleText>{text}</CollapsibleText>
       <div className="Space">&nbsp;</div>
       <div
         className="Close"
