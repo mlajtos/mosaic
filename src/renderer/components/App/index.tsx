@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import GoldenLayout from "golden-layout";
-import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from "recoil";
+import { RecoilRoot } from "recoil";
 
 import TileContainer from "../TileContainer";
 import LayoutContainer, { getLayoutContainer } from "../LayoutContainer";
@@ -16,16 +16,7 @@ import "./dark-theme.scss";
 
 import { useShortcut } from "./utils";
 
-const TileConfig = () => ({
-  title: "WebView",
-  type: "component",
-  componentName: "webview",
-});
-
-export const textState = atom({
-  key: "textState",
-  default: "",
-});
+import DefaultTileConfig from "../DefaultTileConfig";
 
 const config: GoldenLayout.Config = {
   dimensions: {
@@ -38,7 +29,7 @@ const config: GoldenLayout.Config = {
   content: [
     {
       type: "stack",
-      content: [TileConfig()],
+      content: [DefaultTileConfig({ url: "https://google.com/"})],
     },
   ],
 };
@@ -68,6 +59,7 @@ export default () => {
     goldenLayout.init();
 
     goldenLayout.on("stateChanged", () => {
+      // TODO: persistance
       //console.log(goldenLayout.toConfig());
     });
 
@@ -88,20 +80,20 @@ export default () => {
   useShortcut({
     "new-tab": () => {
       // FIX: actually new top-level child, not new tab
-      layout.current?.root.contentItems[0].addChild(TileConfig());
+      layout.current?.root.contentItems[0].addChild(DefaultTileConfig());
       // const activeTile = findActiveTile(layout.current)
       // activeTile
     },
     "close-tab": () => {
-      // FIX:
-      layout.current?.root.contentItems[0].addChild(TileConfig());
-      layout.current?.root.contentItems[0].addChild(TileConfig());
-      layout.current?.root.contentItems[0].addChild(TileConfig());
+      alert("TODO: ⌘W to close tab");
     },
   });
 
   useEffect(() => {
-    layout.current?.createDragSource(googleLauncher.current, TileConfig());
+    layout.current?.createDragSource(
+      googleLauncher.current,
+      DefaultTileConfig()
+    );
   }, []);
 
   return (

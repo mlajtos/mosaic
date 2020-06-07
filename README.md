@@ -11,36 +11,37 @@ Web browser that can display multiple web pages at the same time in one shared w
 - [x] minimalistic look
 - [x] new tile shortcut (⌘T)
 - [x] create new tile by dragging launcher from the dock
-- [ ] page title & favicon in the tab
+- [ ] automatic zoom-to-fit
+- [ ] built-in adblock
+    - [ ] tooglable
+- [ ] page preview in the drag proxy
+- [ ] BUG: misplaced tile while and after dragging
+    - repro: 1:1 layout, start dragging the right one
 - [ ] tile persistance
     - well, I loose all my tiles when I do a refresh :(
-- [ ] automatic zoom-to-fit
-    - WebviewTile and Tab have to share a state
 - [ ] close tile shortcut (⌘W)
-    - how to keep track of last active tile?
 - [ ] back, forward shortcuts (⌘←, ⌘→)
-    - again, need active tile
 - [ ] find on a page (⌘F)
     - I swear when it's missing
     - might focus URL bar with `[In Page]` pill in front of a blinking cursor and search icon somewhere near-by
-- [ ] visual non-linear history
-    - I want to see a high-level node-based visualization of my browsing history – it is going to be probably a let down.
 - [ ] switch tiles by dragging
     - alt dragging one tile over the other and releasing, could rearrange tiles so that they will switch the places
     - scenario:
         1. I have screen with Reddit and Work shared as 1:2 (terrible idea, but the idea is you won't fall into uninterupted procrastination cycle if you'll keep disruptor present)
         2. 
-- [ ] built-in adblock
+- [ ] built-in HTTPS everywhere
 - [ ] "no tiles" screen
 - [ ] zen mode – temporary showing only single tile
 - [ ] "+" button for new tab in the stack
-- [ ] BUG: remove closed `Tile`s from the DOM
 - [ ] autosuggest while searching 
+    - https://ac.duckduckgo.com/ac/?q={searchTerm}&type=list
 - [ ] I don't care about cookies
     – every cookie consent bar is gone, *\*puff\**
 - [ ] system keychain integration
     - I do not login much often in Mosaic so far, will have to wait
     - https://github.com/atom/node-keytar
+- [ ] visual non-linear history
+    - I want to see a high-level node-based visualization of my browsing history – it is going to be probably a let down.
 
 ## Inspiration
 * https://www.behance.net/gallery/96719491/Cliqz-Browser-20-A-Better-Browsing-Experience?tracking_source=search_projects_recommended%7Cweb%20browser

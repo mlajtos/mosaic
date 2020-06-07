@@ -1,13 +1,8 @@
 .Favicon {
   object-fit: contain;
-  width: 2rem;
-  height: 2rem;
-
-  &.default {
-    @media (prefers-color-scheme: dark) {
-      & {
-        filter: invert(1.0);
-      }
-    }
-  }
+  width: 1.3rem;
+  height: 1.2rem;
+  min-width: 1.3rem;
+  max-width: 1.3rem;
+  align-self: center;
 }

@@ -8,10 +8,6 @@
   align-items: center;
   color: color.adjust(colors.$activeTileForeground, $alpha: -0.5);
 
-  .Hostname {
-    flex: 1;
-  }
-
   img {
     width: 0.8em;
     height: 0.8em;

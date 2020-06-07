@@ -1,9 +1,8 @@
 import React, { useCallback, useImperativeHandle, useEffect, useRef } from "react";
+import isUrl from "is-url";
 
 import "./style.scss";
 
-const urlRegex = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
-const isUrl = (s: string) => urlRegex.exec(s) !== null;
 const search = {
   google: (query: string) => `https://www.google.com/search?q=${query}`,
 };

@@ -14,7 +14,7 @@
   flex-direction: row;
   align-items: end;
   margin: 0.2rem 0 0 0;
-  padding: 0.1rem 0.5rem 0.1em 0.7rem;
+  padding: 0.1rem 0.5rem 0.1em 0.5rem;
   max-width: 15rem;
   border-radius: 3px 3px 0 0;
   color: colors.$inactiveTileForeground;
@@ -35,13 +35,15 @@
     border-radius: 0;
     box-shadow: 0.5px 1.5px 0.5px 0px colors.$inactiveTileHighlight, inset 1px -0.5px 0.5px -0.5px transparent;
     background-color: transparent;
-    transition: all 0.25s ease-out;
+    transition: all 0.2s ease-out;
+    filter: contrast(0.9) brightness(0.9) opacity(0.8);
   }
 
   .lm_tab:not(.lm_active):hover & {
     background: colors.$inactiveTileBackgroundHover;
     box-shadow: 0.5px 1.5px 0 0 transparent, inset 1px -0.5px 0.5px -0.5px colors.$inactiveTileBackgroundHover;
     border-radius: 3px 3px 0 0;
+    filter: none;
   }
 
   .Close {
@@ -52,9 +54,5 @@
     &:hover {
       opacity: 1;
     }
-  }
-
-  .Space {
-    flex: 1;
   }
 }
