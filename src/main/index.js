@@ -1,21 +1,43 @@
 "use strict";
 
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, session } from "electron";
 import * as path from "path";
+import { promises as fs } from "fs";
 import { format as formatUrl } from "url";
+import { ElectronBlocker, fullLists, Request } from "@cliqz/adblocker-electron";
+import fetch from "cross-fetch"; // required 'fetch'
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 // global reference to mainWindow (necessary to prevent window from being garbage collected)
 let mainWindow;
 
-function createMainWindow() {
+async function createMainWindow() {
   const window = new BrowserWindow({
     // cannot access iframes without turning off websecurity
     webPreferences: { nodeIntegration: true, webSecurity: false, webviewTag: true },
     frame: false,
-    titleBarStyle: 'hidden'
+    titleBarStyle: "hidden",
   });
+
+  // ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+  //   blocker.enableBlockingInSession(session.defaultSession);
+  // });
+
+  // const blocker = await ElectronBlocker.fromLists(
+  //   fetch,
+  //   fullLists,
+  //   {
+  //     enableCompression: true,
+  //   },
+  //   {
+  //     path: "engine.bin",
+  //     read: fs.readFile,
+  //     write: fs.writeFile,
+  //   }
+  // );
+
+  // blocker.enableBlockingInSession(session.defaultSession);
 
   window.maximize();
 
@@ -73,118 +95,115 @@ function createMainWindow() {
     });
   });
 
+  const { app, Menu } = require("electron");
 
-  const { app, Menu } = require('electron')
+  const isMac = process.platform === "darwin";
 
-const isMac = process.platform === 'darwin'
-
-const template = [
-  // { role: 'appMenu' }
-  ...(isMac ? [{
-    label: app.name,
-    submenu: [
-      { role: 'about' },
-      { type: 'separator' },
-      { role: 'services' },
-      { type: 'separator' },
-      { role: 'hide' },
-      { role: 'hideothers' },
-      { role: 'unhide' },
-      { type: 'separator' },
-      { role: 'quit' }
-    ]
-  }] : []),
-  {
-    label: 'File',
-    submenu: [
-      {
-        label: 'New Tab',
-        accelerator: 'CmdOrCtrl+T',
-        click: () => {  window.webContents.send('shortcut', 'new-tab') }
-      },
-      {
-        label: 'Close Tab',
-        accelerator: 'CmdOrCtrl+W',
-        click: () => {  window.webContents.send('shortcut', 'close-tab') }
-      }
-    ]
-  },
-  // { role: 'editMenu' }
-  {
-    label: 'Edit',
-    submenu: [
-      { role: 'undo' },
-      { role: 'redo' },
-      { type: 'separator' },
-      { role: 'cut' },
-      { role: 'copy' },
-      { role: 'paste' },
-      ...(isMac ? [
-        { role: 'pasteAndMatchStyle' },
-        { role: 'delete' },
-        { role: 'selectAll' },
-        { type: 'separator' },
+  const template = [
+    // { role: 'appMenu' }
+    ...(isMac
+      ? [
+          {
+            label: app.name,
+            submenu: [
+              { role: "about" },
+              { type: "separator" },
+              { role: "services" },
+              { type: "separator" },
+              { role: "hide" },
+              { role: "hideothers" },
+              { role: "unhide" },
+              { type: "separator" },
+              { role: "quit" },
+            ],
+          },
+        ]
+      : []),
+    {
+      label: "File",
+      submenu: [
         {
-          label: 'Speech',
-          submenu: [
-            { role: 'startspeaking' },
-            { role: 'stopspeaking' }
-          ]
-        }
-      ] : [
-        { role: 'delete' },
-        { type: 'separator' },
-        { role: 'selectAll' }
-      ])
-    ]
-  },
-  // { role: 'viewMenu' }
-  {
-    label: 'View',
-    submenu: [
-      { role: 'reload' },
-      { role: 'forcereload' },
-      { role: 'toggledevtools' },
-      { type: 'separator' },
-      { role: 'resetzoom' },
-      { role: 'zoomin' },
-      { role: 'zoomout' },
-      { type: 'separator' },
-      { role: 'togglefullscreen' }
-    ]
-  },
-  // { role: 'windowMenu' }
-  {
-    label: 'Window',
-    submenu: [
-      { role: 'minimize' },
-      { role: 'zoom' },
-      ...(isMac ? [
-        { type: 'separator' },
-        { role: 'front' },
-        { type: 'separator' },
-        { role: 'window' }
-      ] : [
-        { role: 'close' }
-      ])
-    ]
-  },
-  {
-    role: 'help',
-    submenu: [
-      {
-        label: 'Learn More',
-        click: async () => {
-          const { shell } = require('electron')
-          await shell.openExternal('https://electronjs.org')
-        }
-      }
-    ]
-  }
-]
+          label: "New Tab",
+          accelerator: "CmdOrCtrl+T",
+          click: () => {
+            window.webContents.send("shortcut", "new-tab");
+          },
+        },
+        {
+          label: "Close Tab",
+          accelerator: "CmdOrCtrl+W",
+          click: () => {
+            window.webContents.send("shortcut", "close-tab");
+          },
+        },
+      ],
+    },
+    // { role: 'editMenu' }
+    {
+      label: "Edit",
+      submenu: [
+        { role: "undo" },
+        { role: "redo" },
+        { type: "separator" },
+        { role: "cut" },
+        { role: "copy" },
+        { role: "paste" },
+        ...(isMac
+          ? [
+              { role: "pasteAndMatchStyle" },
+              { role: "delete" },
+              { role: "selectAll" },
+              { type: "separator" },
+              {
+                label: "Speech",
+                submenu: [{ role: "startspeaking" }, { role: "stopspeaking" }],
+              },
+            ]
+          : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
+      ],
+    },
+    // { role: 'viewMenu' }
+    {
+      label: "View",
+      submenu: [
+        { role: "reload" },
+        { role: "forcereload" },
+        { role: "toggledevtools" },
+        { type: "separator" },
+        { role: "resetzoom" },
+        { role: "zoomin" },
+        { role: "zoomout" },
+        { type: "separator" },
+        { role: "togglefullscreen" },
+      ],
+    },
+    // { role: 'windowMenu' }
+    {
+      label: "Window",
+      submenu: [
+        { role: "minimize" },
+        { role: "zoom" },
+        ...(isMac
+          ? [{ type: "separator" }, { role: "front" }, { type: "separator" }, { role: "window" }]
+          : [{ role: "close" }]),
+      ],
+    },
+    {
+      role: "help",
+      submenu: [
+        {
+          label: "Learn More",
+          click: async () => {
+            const { shell } = require("electron");
+            await shell.openExternal("https://electronjs.org");
+          },
+        },
+      ],
+    },
+  ];
 
-const menu = Menu.buildFromTemplate(template)
-Menu.setApplicationMenu(menu)
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
 
   return window;
 }
@@ -205,8 +224,8 @@ app.on("activate", () => {
 });
 
 // create main BrowserWindow when electron is ready
-app.on("ready", () => {
-  mainWindow = createMainWindow();
+app.on("ready", async () => {
+  mainWindow = await createMainWindow();
 });
 
 // cannot access iframe content without this
