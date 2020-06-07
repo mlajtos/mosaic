@@ -1,22 +1,22 @@
 import React from "react";
 
-import "./ispinner.css";
+import "./style.scss";
 
 export default () => {
   return (
-    <div className="ispinner gray animating">
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
-      <div className="ispinner-blade"></div>
+    <div className="Loader white animating">
+      <div className="Blade"></div>
+      <div className="Blade"></div>
+      <div className="Blade"></div>
+      <div className="Blade"></div>
+      <div className="Blade"></div>
+      <div className="Blade"></div>
+      <div className="Blade"></div>
+      <div className="Blade"></div>
+      <div className="Blade"></div>
+      <div className="Blade"></div>
+      <div className="Blade"></div>
+      <div className="Blade"></div>
     </div>
   );
 };
