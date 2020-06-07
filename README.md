@@ -6,7 +6,7 @@ Web browser that can display multiple web pages at the same time in one shared w
 
 ## Features
 
-- [x] included [Architectural Design Decisions](ADD.md)
+- [x] included [Design Decisions](DesignDecisions.md)
 - [x] mouse-friendly tile managment
 - [x] minimalistic look
 - [x] new tile shortcut (⌘T)
