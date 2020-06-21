@@ -2,7 +2,7 @@
 
 Web browser that can display multiple web pages at the same time in one shared window.
 
-[![](showcase/2020-05-27.png)](showcase/2020-05-27.png)
+[![](showcase/2020-06-21.png)](showcase/2020-06-21.png)
 
 ## Features
 
@@ -11,9 +11,11 @@ Web browser that can display multiple web pages at the same time in one shared w
 - [x] minimalistic look
 - [x] new tile shortcut (⌘T)
 - [x] create new tile by dragging launcher from the dock
+- [x] autosuggest while searching
 - [ ] automatic zoom-to-fit
 - [ ] built-in adblock
-    - [ ] tooglable
+    - tooglable?
+    - uBlock Origin, not clicqz – it fucks up things
 - [ ] page preview in the drag proxy
 - [ ] BUG: misplaced tile while and after dragging
     - repro: horizontal 1:1 layout, start dragging the right one
@@ -34,8 +36,6 @@ Web browser that can display multiple web pages at the same time in one shared w
 - [ ] "no tiles" screen
 - [ ] zen mode – temporary showing only single tile
 - [ ] "+" button for new tab in the stack
-- [ ] autosuggest while searching 
-    - https://ac.duckduckgo.com/ac/?q={searchTerm}&type=list
 - [ ] I don't care about cookies
     – every cookie consent bar is gone, *\*puff\**
 - [ ] system keychain integration
