@@ -16,7 +16,7 @@ Web browser that can display multiple web pages at the same time in one shared w
     - [ ] tooglable
 - [ ] page preview in the drag proxy
 - [ ] BUG: misplaced tile while and after dragging
-    - repro: 1:1 layout, start dragging the right one
+    - repro: horizontal 1:1 layout, start dragging the right one
 - [ ] tile persistance
     - well, I loose all my tiles when I do a refresh :(
 - [ ] close tile shortcut (⌘W)
@@ -24,6 +24,7 @@ Web browser that can display multiple web pages at the same time in one shared w
 - [ ] find on a page (⌘F)
     - I swear when it's missing
     - might focus URL bar with `[In Page]` pill in front of a blinking cursor and search icon somewhere near-by
+    - use via "!inpage" bang
 - [ ] switch tiles by dragging
     - alt dragging one tile over the other and releasing, could rearrange tiles so that they will switch the places
     - scenario:

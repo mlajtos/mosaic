@@ -11,4 +11,5 @@ $horizontalPadding: 10px;
   align-items: center;
 
   padding: $traficLightsVerticalOffset $horizontalPadding 0;
+  user-select: none;
 }

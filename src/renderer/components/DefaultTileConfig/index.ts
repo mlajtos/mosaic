@@ -1,15 +1,16 @@
 type TileConfig = {
-  url: string,
+  url: string;
   title: string;
   type: "component";
   componentName: "webview";
+  header?: {
+    show: false | "top" | "left" | "right" | "bottom";
+  };
 };
 
-
-
 export default (props?: Partial<TileConfig>): TileConfig => ({
+  url: "about:blank",
   ...props,
-  url: "https://google.com/",
   title: "WebView",
   type: "component",
   componentName: "webview",

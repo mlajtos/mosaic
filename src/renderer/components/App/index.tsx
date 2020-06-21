@@ -7,8 +7,10 @@ import TileContainer from "../TileContainer";
 import LayoutContainer, { getLayoutContainer } from "../LayoutContainer";
 import Dock from "../Dock";
 import WebviewTile from "../WebviewTile";
-import GoogleLauncher from "../GoogleLauncher";
 import Surface from "../Surface";
+import GoogleLauncher from "../GoogleLauncher";
+import DuckDuckGoLauncher from "../DuckDuckGoLauncher";
+import WikipediaLauncher from "../WikipediaLauncher";
 
 import "./style.scss";
 import "./base.scss";
@@ -17,6 +19,7 @@ import "./dark-theme.scss";
 import { useShortcut } from "./utils";
 
 import DefaultTileConfig from "../DefaultTileConfig";
+import RedditLauncher from "../RedditLauncher";
 
 const config: GoldenLayout.Config = {
   dimensions: {
@@ -25,11 +28,16 @@ const config: GoldenLayout.Config = {
   settings: {
     showPopoutIcon: false,
     showMaximiseIcon: false,
+    // @ts-ignore
+    responsiveMode: 'none',
+    // HACK: prevent GoldenLayout to hide tabs that would not fit, instead rely on the flexbox
+    tabControlOffset: -1000
+
   },
   content: [
     {
       type: "stack",
-      content: [DefaultTileConfig({ url: "https://google.com/"})],
+      content: [DefaultTileConfig()],
     },
   ],
 };
@@ -51,7 +59,11 @@ const WebtileComponent = function (container: GoldenLayout.Container, state: any
 
 export default () => {
   const layout = useRef<GoldenLayout | null>(null);
-  const googleLauncher = useRef<HTMLElement | null>(null);
+
+  const googleLauncher = useRef<HTMLDivElement | null>(null);
+  const duckDuckGoLauncher = useRef<HTMLDivElement | null>(null);
+  const wikipediaLauncher = useRef<HTMLDivElement | null>(null);
+  const redditLauncher = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const goldenLayout = new GoldenLayout(config, getLayoutContainer());
@@ -92,7 +104,22 @@ export default () => {
   useEffect(() => {
     layout.current?.createDragSource(
       googleLauncher.current,
-      DefaultTileConfig()
+      DefaultTileConfig({ url: "https://google.com/" })
+    );
+
+    layout.current?.createDragSource(
+      duckDuckGoLauncher.current,
+      DefaultTileConfig({ url: "https://duckduckgo.com/" })
+    );
+
+    layout.current?.createDragSource(
+      wikipediaLauncher.current,
+      DefaultTileConfig({ url: "https://wikipedia.org" })
+    );
+
+    layout.current?.createDragSource(
+      redditLauncher.current,
+      DefaultTileConfig({ url: "https://reddit.com" })
     );
   }, []);
 
@@ -100,6 +127,9 @@ export default () => {
     <div className="Container">
       <Dock>
         <GoogleLauncher ref={googleLauncher} />
+        <DuckDuckGoLauncher ref={duckDuckGoLauncher} />
+        <RedditLauncher ref={redditLauncher} />
+        <WikipediaLauncher ref={wikipediaLauncher} />
       </Dock>
       <Surface>
         <LayoutContainer />

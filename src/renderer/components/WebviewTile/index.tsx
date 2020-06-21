@@ -19,7 +19,7 @@ const Space = () => <div style={{ width: "0.5rem" }} />;
 
 export default ({ container, state }: { container: GoldenLayout.Container; state: any }) => {
   const webviewRef = useRef<HTMLWebViewElement>(null);
-  const [queryHasFocus, setQueryHasFocus] = useState(false);
+  const [queryHasFocus, setQueryHasFocus] = useState(true);
 
   const [{ title, url, query, loading, favicons }, setPageState] = useRecoilState(PageState);
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import DockItem from "../DockItem";
 
-import googleIcon from "./google.png";
+import googleIcon from "./wikipedia.png";
 
 export default forwardRef<HTMLDivElement>(({}, ref) => {
   return (

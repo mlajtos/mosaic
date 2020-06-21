@@ -73,12 +73,16 @@
   list-style-type: none;
 }
 .lm_header .lm_tabs {
-  position: absolute;
+  // position: absolute;
+  display: flex;
+  flex-direction: row;
 }
 .lm_header .lm_tab {
   cursor: pointer;
   float: left;
   position: relative;
+  /* flex: 1 0 0%; */
+  min-width: 50px;
 }
 .lm_header .lm_tab i {
   width: 2px;

@@ -5,4 +5,8 @@
   min-width: 1.3rem;
   max-width: 1.3rem;
   align-self: center;
+
+  &.default {
+    filter: invert(1);
+  }
 }

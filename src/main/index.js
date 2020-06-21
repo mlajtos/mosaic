@@ -18,24 +18,12 @@ async function createMainWindow() {
     webPreferences: { nodeIntegration: true, webSecurity: false, webviewTag: true },
     frame: false,
     titleBarStyle: "hidden",
+    backgroundColor: "#222222",
   });
 
   // ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
   //   blocker.enableBlockingInSession(session.defaultSession);
   // });
-
-  // const blocker = await ElectronBlocker.fromLists(
-  //   fetch,
-  //   fullLists,
-  //   {
-  //     enableCompression: true,
-  //   },
-  //   {
-  //     path: "engine.bin",
-  //     read: fs.readFile,
-  //     write: fs.writeFile,
-  //   }
-  // );
 
   // blocker.enableBlockingInSession(session.defaultSession);
 
@@ -226,6 +214,10 @@ app.on("activate", () => {
 // create main BrowserWindow when electron is ready
 app.on("ready", async () => {
   mainWindow = await createMainWindow();
+
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.show();
+  });
 });
 
 // cannot access iframe content without this

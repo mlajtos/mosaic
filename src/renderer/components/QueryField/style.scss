@@ -1,27 +1,50 @@
-input.QueryField {
-  font-size: 0.9rem;
-  padding: 0 1rem;
-  border: none;
-  background: transparent;
-  color: #000000ab;
-  border-radius: 3px;
-  flex: 1;
-  text-overflow: ellipsis;
-  outline: none;
-  user-select: none;
-  height: 2.5rem;
-  font-size: 1.1rem;
-  line-height: 1.5rem;
+@use "../App/colors.scss";
 
-  &:focus {
-    box-shadow: inset 1px 1px 1px #00000054;
-    color: #000000d1;
+$height: 2.5rem;
+
+.QueryField {
+  background-color: colors.$activeTileBackground;
+  color: colors.$activeTileForeground;
+  width: 100%;
+  display: flex;
+
+  input {
+    flex: 1;
+    // width: 100%;
+    padding: 0 1rem;
+    border: none;
+    background: colors.$activeTileBackground;
+    color: colors.$activeTileForeground;
+    text-overflow: ellipsis;
+    outline: none;
+    user-select: none;
+    height: $height;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
     user-select: unset;
+  }
 
-    @media (prefers-color-scheme: dark) {
-      & {
-        background: #525252;
-        color: #ffffffd1;
+  .Suggestions {
+    position: absolute;
+    background-color: colors.$activeTileBackground;
+    width: 100%;
+    top: $height;
+
+    .Suggestion {
+      padding: 0 1rem;
+      font-size: 1.1rem;
+      line-height: 1.5rem;
+
+      &.focused {
+        background-color: #292929;
+      }
+
+      strong {
+        font-weight: 500;
+      }
+
+      span {
+        opacity: 0.8;
       }
     }
   }
