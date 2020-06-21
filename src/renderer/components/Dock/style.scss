@@ -4,7 +4,7 @@ $horizontalPadding: 10px;
 
 #Dock {
   width: $traficLightsHorizontalOffset - $horizontalPadding * 2;
-  height: calc(100vh - $traficLightsVerticalOffset);
+  // height: calc(100vh - $traficLightsVerticalOffset);
 
   display: flex;
   flex-direction: column;
@@ -12,4 +12,5 @@ $horizontalPadding: 10px;
 
   padding: $traficLightsVerticalOffset $horizontalPadding 0;
   user-select: none;
+  -webkit-app-region: drag
 }
