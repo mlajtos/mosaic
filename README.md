@@ -19,7 +19,7 @@ Web browser that can display multiple web pages at the same time in one shared w
 - [ ] Familiar shortcuts (⌘T, ⌘W, ⌘L, ⌘←, ⌘→)
 - [ ] Built-in privacy
     - [ ] Adblock ([uBlock Origin](https://github.com/gorhill/uBlock))
-    - [ ] blocking cookie consent non-sense
+    - [ ] Blocking cookie consent non-sense
     - [x] No history
     - [ ] HTTPS everywhere
 - [ ] [System keychain integration](https://github.com/atom/node-keytar)
