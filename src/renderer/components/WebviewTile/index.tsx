@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import GoldenLayout from "golden-layout";
 import { useRecoilState } from "recoil";
 
@@ -21,12 +21,11 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
   const webviewRef = useRef<HTMLWebViewElement>(null);
   const [queryHasFocus, setQueryHasFocus] = useState(true);
 
-  const [{ title, url, query, loading, favicons }, setPageState] = useRecoilState(PageState);
+  const [{ url, query }, setPageState] = useRecoilState(PageState);
 
   useEffect(() => {
-    // if (url === "") {
-      setPageState((page) => ({ ...page, url: container._config.url }));
-    // }
+    // @ts-ignore
+    setPageState((page) => ({ ...page, url: container._config.url }));
   }, []);
 
   const on = useEventListener(webviewRef);
@@ -38,26 +37,33 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
     setPageState((state) => ({ ...state, url, favicons: [], query: url }));
   });
   on("will-navigate", ({ url }) => setPageState((page) => ({ ...page, url })));
-  on("new-window", ({ url }) => {
-    // open new tab in background
+  on("new-window", ({ url, disposition }) => {
+    // open new tab
     const newTab = DefaultTileConfig({ url });
     container.parent.parent.addChild(newTab);
-    container.parent.parent.setActiveContentItem(container.parent);
+    if (disposition === "foreground-tab") {
+      container.parent.parent.setActiveContentItem(
+        container.parent.parent.contentItems[container.parent.parent.contentItems.length - 1]
+      );
+    } else {
+      container.parent.parent.setActiveContentItem(container.parent);
+    }
   });
 
   on("page-title-updated", ({ title }) => setPageState((page) => ({ ...page, title })));
-
-  const onLoad = useCallback((e) => {
-    console.log(e);
+  on("did-stop-loading", async (e) => {
     const webContentsId = e.target.getWebContentsId();
     const webContents = remote.webContents.fromId(webContentsId);
-    console.log(webContents);
-    // webContents.executeJavaScript("MosaicInternal.zoomToFit()");
-    // setUrl(e.target.contentWindow.location.href);
-    // setQuery(e.target.contentWindow.location.href);
-    // zoomToFit(e.target.contentWindow.document.documentElement);
-  }, []);
-  // on("did-stop-loading", onLoad);
+    const zoomFactor = await webContents.executeJavaScript(
+      "document.documentElement.clientWidth / document.documentElement.scrollWidth"
+    );
+    console.log(zoomFactor)
+    if (zoomFactor > 0) {
+      webContents.zoomFactor = zoomFactor;
+    }
+    // setPageState(page => ({ ...page, url: e.target.contentWindow.location.href}));
+    // setPageState(page => ({ ...page, query: e.target.contentWindow.location.href}));
+  });
 
   return (
     <Tile>

@@ -1,0 +1,9 @@
+.TabCloseButton {
+  opacity: 0.5;
+  padding: 0.1em;
+  transform: scale(0.8);
+
+  &:hover {
+    opacity: 1 !important;
+  }
+}

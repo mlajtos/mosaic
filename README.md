@@ -12,7 +12,9 @@ Web browser that can display multiple web pages at the same time in one shared w
 - [x] new tile shortcut (⌘T)
 - [x] create new tile by dragging launcher from the dock
 - [x] autosuggest while searching
-- [ ] automatic zoom-to-fit
+- [X] automatic zoom-to-fit
+    - run on page load
+    - kinda sucks
 - [ ] built-in adblock
     - tooglable?
     - uBlock Origin, not clicqz – it fucks up things
@@ -34,6 +36,7 @@ Web browser that can display multiple web pages at the same time in one shared w
         2. 
 - [ ] built-in HTTPS everywhere
 - [ ] "no tiles" screen
+- [ ] PIP
 - [ ] zen mode – temporary showing only single tile
 - [ ] "+" button for new tab in the stack
 - [ ] I don't care about cookies

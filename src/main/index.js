@@ -18,7 +18,8 @@ async function createMainWindow() {
     webPreferences: { nodeIntegration: true, webSecurity: false, webviewTag: true },
     frame: false,
     titleBarStyle: "hidden",
-    backgroundColor: "#222222",
+    // backgroundColor: "#222222",
+    vibrancy: "window"
   });
 
   // ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {

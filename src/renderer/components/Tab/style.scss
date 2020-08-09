@@ -9,6 +9,15 @@
   }
 }
 
+@keyframes fadeIn {
+  0% {
+    flex: 0;
+  }
+  100% {
+    flex: 1;
+  }
+}
+
 .Tab {
   display: flex;
   flex-direction: row;
@@ -45,13 +54,11 @@
     filter: none;
   }
 
-  .Close {
-    opacity: 0.5;
-    padding: 0.1em;
-    transform: scale(0.8);
+  & .TabCloseButton {
+    opacity: 0.1;
+  }
 
-    &:hover {
-      opacity: 1;
-    }
+  &:hover .TabCloseButton {
+    opacity: 0.5;
   }
 }

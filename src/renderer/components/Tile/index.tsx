@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import ReactDOM from "react-dom";
 
 import "./style.scss";
@@ -36,15 +36,12 @@ export default ({ children }: { children: React.ReactNode }) => {
 
   const tileContainer = document.querySelector("#TileContainer");
 
-  useEffect(
-    () => () => {
-      console.log("died");
-    },
-    []
-  );
-
   return (
-    <div className="TileProxy" ref={observer}>
+    <div
+      className="TileProxy"
+      ref={observer}
+      //onMouseMoveCapture={(e) => console.log("mousemove", e.currentTarget)}
+    >
       {ReactDOM.createPortal(
         <div
           ref={tileRef}

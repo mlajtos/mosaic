@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import isUrl from "is-url";
 
 import "./style.scss";
@@ -39,7 +39,9 @@ export default ({
     }
   }, [focused]);
 
-  const { suggestions, focusPrevious, focusNext, focusedSuggestion, focusedSuggestionIndex } = useSuggestions(value);
+  const { suggestions, focusPrevious, focusNext, focusedSuggestion, focusedSuggestionIndex } = useSuggestions(
+    value
+  );
 
   return (
     <div ref={containerRef} className="QueryField">
@@ -57,7 +59,6 @@ export default ({
           }
         }}
         onKeyDown={(e) => {
-          
           if (e.key === "Enter") {
             let url: string;
             const hasSuggestion = focusedSuggestionIndex !== -1;

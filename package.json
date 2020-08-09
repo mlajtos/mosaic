@@ -1,7 +1,13 @@
 {
   "name": "mosaic-browser",
+  "productName": "Mosaic",
   "version": "0.0.1",
   "license": "MIT",
+  "author": {
+    "name": "Milan Lajtoš",
+    "email": "milan.lajtos@me.com",
+    "url": "https://github.com/mlajtos"
+  },
   "scripts": {
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
@@ -9,6 +15,8 @@
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "dependencies": {
+    "react-spring": "^8.0.27",
+    "resize-observer-polyfill": "^1.5.1",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {

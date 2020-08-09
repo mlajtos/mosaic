@@ -1,13 +1,10 @@
-import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
-
-const defaultUrl = "about:blank";
-const defaultTitle = "New tile";
+import { atom } from "recoil";
 
 export default atom({
     key: "pageState",
     default: {
-      title: defaultTitle,
-      url: "",
+      title: "New tab",
+      url: "about:blank",
       query: "",
       loading: false,
       favicons: []
