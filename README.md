@@ -2,7 +2,7 @@
 
 Web browser that can display multiple web pages at the same time in one shared window.
 
-[![](showcase/2020-06-21.png)](showcase/2020-06-21.png)
+[![](showcase/Mosaic-0.0.1.gif)](showcase/Mosaic-0.0.1.gif)
 
 ## Features
 
