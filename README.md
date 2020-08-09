@@ -23,3 +23,7 @@ Web browser that can display multiple web pages at the same time in one shared w
     - [x] No history
     - [ ] HTTPS everywhere
 - [ ] [System keychain integration](https://github.com/atom/node-keytar)
+
+# Download
+
+- [Mosaic for Mac 0.0.1 (DMG)](https://github.com/mlajtos/mosaic/releases/download/v0.0.1/Mosaic-0.0.1.dmg)
