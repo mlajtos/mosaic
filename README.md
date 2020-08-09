@@ -27,3 +27,4 @@ Web browser that can display multiple web pages at the same time in one shared w
 # Download
 
 - [Mosaic for Mac 0.0.1 (DMG)](https://github.com/mlajtos/mosaic/releases/download/v0.0.1/Mosaic-0.0.1.dmg)
+- [Mosaic for Windows 0.0.1 (Installer)](https://github.com/mlajtos/mosaic/releases/download/v0.0.1/Mosaic.Setup.0.0.1.exe)
