@@ -24,7 +24,33 @@ Web browser that can display multiple web pages at the same time in one shared w
     - [ ] HTTPS everywhere
 - [ ] [System keychain integration](https://github.com/atom/node-keytar)
 
-# Download
+## Download
 
 - [Mosaic for Mac 0.0.1 (DMG)](https://github.com/mlajtos/mosaic/releases/download/v0.0.1/Mosaic-0.0.1.dmg)
 - [Mosaic for Windows 0.0.1 (Installer)](https://github.com/mlajtos/mosaic/releases/download/v0.0.1/Mosaic.Setup.0.0.1.exe)
+
+## Development
+
+Clone repository and install dependencies:
+
+```bash
+$ git clone https://github.com/mlajtos/mosaic.git
+$ cd mosaic
+$ yarn
+```
+
+Live development
+
+```bash
+$ yarn dev
+```
+
+Create a distribution package for current platform (Mac, Linux, Windows):
+
+```bash
+$ yarn dist
+```
+
+## Thank you
+
+@mdatko for Windows build
