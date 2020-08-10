@@ -53,4 +53,4 @@ $ yarn dist
 
 ## Thank you
 
-@mdatko for Windows build
+[@mdatko](https://github.com/mdatko) for Windows build
