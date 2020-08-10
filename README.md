@@ -31,7 +31,10 @@ Web browser that can display multiple web pages at the same time in one shared w
 
 ## Development
 
-Clone repository and install dependencies:
+System prerequisites: [Git](https://git-scm.com/), [NodeJS](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/)
+
+
+Clone repository and install project dependencies:
 
 ```bash
 $ git clone https://github.com/mlajtos/mosaic.git
