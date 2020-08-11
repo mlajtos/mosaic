@@ -7,7 +7,7 @@ Web browser that can display multiple web pages at the same time in one shared w
 ## Features
 
 - [x] Documented [Design Decisions](DesignDecisions.md)
-- [x] Pure Electron app, i.e. not based on Chromium
+- [x] Pure Electron app, i.e. not a forked Chrome/Chromium
 - [x] Intuitive drag&drop tile managment
 - [x] Built-in search engine ([DDG](https://duckduckgo.com/))
     - auto suggest while typing
