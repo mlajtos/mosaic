@@ -1,6 +1,6 @@
 # Mosaic – A Tiling Web Browser
 
-Web browser that can display multiple web pages at the same time in one shared window.
+Web browser that can display multiple web pages at the same time in one shared window. [Why this name?](https://github.com/mlajtos/mosaic/blob/master/DesignDecisions.md#mosaic)
 
 [![](showcase/Mosaic-0.0.1.gif)](showcase/Mosaic-0.0.1.gif)
 
