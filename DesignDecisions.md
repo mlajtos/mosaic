@@ -1,6 +1,6 @@
 # Design Decisions
 
-Every now and then, there has to be made a decision on how to proceed with the implementation. This is a list of all major design decisions.
+Every now and then, a decision has to be made on how to proceed with the implementation. This is a list of all major design decisions.
 
 ## Tiling
 
