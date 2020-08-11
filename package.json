@@ -3,6 +3,7 @@
   "productName": "Mosaic",
   "version": "0.0.1",
   "license": "MIT",
+  "description": "Web browser that can display multiple web pages at the same time in one shared window.",
   "author": {
     "name": "Milan Lajtoš",
     "email": "milan.lajtos@me.com",
@@ -11,8 +12,34 @@
   "scripts": {
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
-    "dist": "yarn compile && electron-builder",
+    "dist:linux_windows": "electron-builder --ia32 --x64 --win --linux",
+    "dist": "yarn compile && yarn dist:linux_windows",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+  },
+  "build": {
+    "appId": "com.github.mlajtos.mosaic",
+    "buildVersion": "0.0.1-01",
+    "files": [
+      "build/.*png"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "linux": {
+      "category": "Network",
+      "icon": "build/icon.png",
+      "synopsis": "Web browser that can display multiple web pages at the same time in one shared window.",
+      "executableName": "mosaic",
+      "target": [
+        "deb",
+        "rpm",
+        "tar.gz"
+      ]
+    }
   },
   "dependencies": {
     "react-spring": "^8.0.27",
