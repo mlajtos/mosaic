@@ -18,7 +18,7 @@ Every now and then, there has to be made a decision on how to proceed with the i
 
 **Problem:** Naming is a hard problem.
 
-**Solution:** Tiling creates some kind of a mosaic. There already is the legendary browser called [NSCA Mosaic](https://en.wikipedia.org/wiki/Mosaic_(web_browser)), so the choice seemed right. No idea about copyright issues. IANAL
+**Solution:** Tiling creates some kind of a mosaic. There already is the legendary browser called [NCSA Mosaic](https://en.wikipedia.org/wiki/Mosaic_(web_browser)), so the choice seemed right. No idea about copyright issues. IANAL
 
 ## Webviews
 
