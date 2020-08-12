@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
+    "build": "electron-webpack",
     "dist:linux_windows": "electron-builder --ia32 --x64 --win --linux",
     "dist": "yarn compile && yarn dist:linux_windows",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
@@ -37,6 +38,7 @@
       "target": [
         "deb",
         "rpm",
+        "pacman",
         "tar.gz"
       ]
     }
