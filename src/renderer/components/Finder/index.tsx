@@ -58,13 +58,11 @@ export default ({ container, getState, webviewRef }) => {
       {finderIsDisplayed ? (
         <div id="Finder">
           <input autoFocus ref={inputRef} placeholder="Find" onInput={goFind} />
-          <button onClick={() => displayFinder(false)}>
+          <button onClick={() => stopFind()}>
             <img src={Cross} />
           </button>
         </div>
-      ) : (
-        null
-      )}
+      ) : null}
     </div>
   );
 };
