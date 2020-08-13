@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import GoldenLayout from "golden-layout";
-import { useRecoilState } from "recoil";
+import {atom, selector, useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 
 import QueryField from "../QueryField";
 import Toolbar from "../Toolbar";
@@ -10,12 +10,15 @@ import Tile from "../Tile";
 import ToolbarButton from "../ToolbarButton";
 import PageState from "../PageState";
 import Tab from "../Tab";
+import Finder from '../Finder'
 
 import { useEventListener } from "./utils";
 import { remote } from "electron";
 import DefaultTileConfig from "../DefaultTileConfig";
 
 const Space = () => <div style={{ width: "0.5rem" }} />;
+
+let focusedWebview
 
 export default ({ container, state }: { container: GoldenLayout.Container; state: any }) => {
   const webviewRef = useRef<HTMLWebViewElement>(null);
@@ -26,6 +29,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
   useEffect(() => {
     // @ts-ignore
     setPageState((page) => ({ ...page, url: container._config.url }));
+    focusedWebview = webviewRef.current
   }, []);
 
   const on = useEventListener(webviewRef);
@@ -57,7 +61,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
     const zoomFactor = await webContents.executeJavaScript(
       "document.documentElement.clientWidth / document.documentElement.scrollWidth"
     );
-    console.log(zoomFactor)
+    
     if (zoomFactor > 0) {
       webContents.zoomFactor = zoomFactor;
     }
@@ -67,7 +71,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
 
   return (
     <Tile>
-      <Tab for={container} />
+      <Tab for={container} onClick={()=>  focusedWebview = webviewRef.current}/>
       <Toolbar>
         {queryHasFocus ? (
           <QueryField
@@ -81,7 +85,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
             onBlur={() => {
               setQueryHasFocus(false);
             }}
-          />
+            />
         ) : (
           <>
             <ToolbarButton
@@ -89,7 +93,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
                 // @ts-ignore
                 webviewRef.current?.goBack();
               }}
-            >
+              >
               ←
             </ToolbarButton>
             <ToolbarButton
@@ -97,7 +101,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
                 // @ts-ignore
                 webviewRef.current?.goForward();
               }}
-            >
+              >
               →
             </ToolbarButton>
             <Space />
@@ -105,13 +109,14 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
               onClick={() => {
                 setQueryHasFocus(true);
               }}
-            >
+              >
               <DomainInfo url={url} />
             </div>
-          </>
+            </>
         )}
+        <Finder container={container} getState={() => focusedWebview} webviewRef={webviewRef}/>
       </Toolbar>
-      <Webview $ref={webviewRef} url={url} />
+      <Webview $ref={webviewRef} url={url} onFocus={()=>  focusedWebview = webviewRef.current}/>
     </Tile>
   );
 };

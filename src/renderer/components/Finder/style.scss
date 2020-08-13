@@ -1,0 +1,50 @@
+@keyframes opening {
+  from {
+    top: 33px;
+  }
+  to {
+    top: 40px;
+  }
+}
+
+#Finder{
+  animation: opening ease-out 0.15s;
+  background:  rgb(57, 57, 57);
+  padding: 5px;
+  position: absolute;
+  top: 40px;
+  right: 30px;
+  border-radius: 5px;
+  height: 25px;
+  display: flex;
+  & > button {
+    padding: 0;
+    margin:0;
+    border: none;
+    width: 25px;
+    margin: auto 0;
+    height: 100%;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(70,70,70);
+    & > img {
+      width: 80%;
+    }
+  }
+  & > input {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    border-radius: 3px;
+    border: none;
+    padding: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    outline:0;
+    background: rgb(93,93,93);
+    color: white;
+    &::-webkit-input-placeholder{
+      color: rgb(190, 190, 190);
+    }
+  }
+}

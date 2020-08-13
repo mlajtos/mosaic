@@ -131,6 +131,13 @@ async function createMainWindow() {
     {
       label: "Edit",
       submenu: [
+          {
+              label: "Find in page",
+              accelerator: "CmdOrCtrl+F",
+              click: () => {
+                  window.webContents.send("shortcut", "find-in-page");
+              },
+          },
         { role: "undo" },
         { role: "redo" },
         { type: "separator" },

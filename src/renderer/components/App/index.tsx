@@ -99,7 +99,7 @@ export default () => {
     },
     "close-tab": () => {
       alert("TODO: ⌘W to close tab");
-    },
+    }
   });
 
   useEffect(() => {

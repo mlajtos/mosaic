@@ -1,9 +1,10 @@
 import React, { useRef, RefObject } from "react";
 import useMergedRef from "@react-hook/merged-ref";
+import { useShortcut } from "../App/utils";
 
 import "./style.scss";
 
-export default ({ $ref, url }: { $ref: RefObject<HTMLWebViewElement>; url: string }) => {
+export default function ({ onFocus, $ref, url }: { $ref: RefObject<HTMLWebViewElement>; url: string }){
   const innerRef = useRef<HTMLWebViewElement | null>(null);
   const ref = useMergedRef($ref, innerRef);
 
@@ -30,8 +31,15 @@ export default ({ $ref, url }: { $ref: RefObject<HTMLWebViewElement>; url: strin
   //     }
   //   });
   // }, [innerRef]);
-
+/*
+  useShortcut({
+    "find-in-page": () => {
+      const { current } = innerRef
+      console.log(innerRef)
+    }
+  })
+*/
   return (
-    <webview ref={ref} className="Webview" src={url} webpreferences="scrollBounce,defaultEncoding=utf-8" onFocus={(e) => console.log(e.target)} />
+    <webview ref={ref} className="Webview" src={url} webpreferences="scrollBounce,defaultEncoding=utf-8" onFocus={onFocus}/>
   );
 };
