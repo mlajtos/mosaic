@@ -9,6 +9,7 @@ import Webview from "../Webview";
 import ToolbarButton from "../ToolbarButton";
 import PageState from "../PageState";
 import Tab from "../Tab";
+import Finder from "../Finder";
 
 import { useEventListener } from "./utils";
 import { remote } from "electron";
@@ -16,13 +17,7 @@ import DefaultTileConfig from "../DefaultTileConfig";
 
 const Space = () => <div style={{ width: "0.5rem" }} />;
 
-export default ({
-  container,
-  state,
-}: {
-  container: GoldenLayout.Container;
-  state: any;
-}) => {
+export default ({ container, state }: { container: GoldenLayout.Container; state: any }) => {
   const webviewRef = useRef<HTMLWebViewElement>(null);
   const [queryHasFocus, setQueryHasFocus] = useState(true);
 
@@ -62,7 +57,6 @@ export default ({
     const zoomFactor = await webContents.executeJavaScript(
       "document.documentElement.clientWidth / document.documentElement.scrollWidth"
     );
-
     if (zoomFactor > 0) {
       webContents.zoomFactor = zoomFactor;
     }
@@ -115,8 +109,9 @@ export default ({
             </div>
           </>
         )}
+        <Finder />
       </Toolbar>
       <Webview $ref={webviewRef} url={url} />
-      </>
+    </>
   );
 };
