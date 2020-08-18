@@ -1,11 +1,11 @@
 import React,{ useState, useEffect, useRef } from "react";
-import {atom, selector, useRecoilState, useRecoilValue } from 'recoil';
 import './style.scss'
+import GoldenLayout from "golden-layout";
 import { useShortcut } from "../App/utils";
 import Cross from './cross.svg'
 
-export default ({ container, getState, webviewRef }) => {
-  let inputRef = useRef(null)
+export default function ({ container, getState, webviewRef }:{container: GoldenLayout.Container; getState: () => HTMLElement ; webviewRef:any}){
+  let inputRef: any = useRef(null)
   const [finderIsDisplayed, displayFinder] = useState(false)
 
   useShortcut({
@@ -20,7 +20,7 @@ export default ({ container, getState, webviewRef }) => {
     }
   })
   
-  function EscShortcut({ keyCode }){
+  function EscShortcut({ keyCode }: KeyboardEvent): any{
     if(keyCode === 27){
       stopFind()
     }

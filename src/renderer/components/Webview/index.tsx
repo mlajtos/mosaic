@@ -1,10 +1,9 @@
 import React, { useRef, RefObject } from "react";
 import useMergedRef from "@react-hook/merged-ref";
-import { useShortcut } from "../App/utils";
 
 import "./style.scss";
 
-export default function ({ onFocus, $ref, url }: { $ref: RefObject<HTMLWebViewElement>; url: string }){
+export default function ({ onFocus, $ref, url }: { onFocus: () => any; $ref: RefObject<HTMLWebViewElement>; url: string }){
   const innerRef = useRef<HTMLWebViewElement | null>(null);
   const ref = useMergedRef($ref, innerRef);
 

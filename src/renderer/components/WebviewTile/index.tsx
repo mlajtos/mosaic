@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import GoldenLayout from "golden-layout";
-import {atom, selector, useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import QueryField from "../QueryField";
 import Toolbar from "../Toolbar";
@@ -18,7 +18,7 @@ import DefaultTileConfig from "../DefaultTileConfig";
 
 const Space = () => <div style={{ width: "0.5rem" }} />;
 
-let focusedWebview
+let focusedWebview: any
 
 export default ({ container, state }: { container: GoldenLayout.Container; state: any }) => {
   const webviewRef = useRef<HTMLWebViewElement>(null);
@@ -71,7 +71,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
 
   return (
     <Tile>
-      <Tab for={container} onClick={()=>  focusedWebview = webviewRef.current}/>
+      <Tab for={container}/>
       <Toolbar>
         {queryHasFocus ? (
           <QueryField
