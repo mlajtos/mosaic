@@ -6,6 +6,7 @@ import { promises as fs } from "fs";
 import { format as formatUrl } from "url";
 import { ElectronBlocker, fullLists, Request } from "@cliqz/adblocker-electron";
 import fetch from "cross-fetch"; // required 'fetch'
+import windowStateKeeper from 'electron-window-state';
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -13,13 +14,20 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 let mainWindow;
 
 async function createMainWindow() {
+  let mainWindowState = windowStateKeeper({
+    defaultWidth: 750,
+    defaultHeight: 750
+  });
   const window = new BrowserWindow({
     // cannot access iframes without turning off websecurity
     webPreferences: { nodeIntegration: true, webSecurity: false, webviewTag: true },
     frame: process.platform !== 'darwin',
-    // backgroundColor: "#222222",
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    height: mainWindowState.height,
+    width: mainWindowState.width,
     vibrancy: "window"
-  });
+   });
 
   // ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
   //   blocker.enableBlockingInSession(session.defaultSession);
