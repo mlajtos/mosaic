@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 import TileState from "../TileState";
 import { useShortcut } from "../App/utils";
@@ -7,10 +7,9 @@ import { useShortcut } from "../App/utils";
 import Cross from "./cross.svg";
 import "./style.scss";
 
-export default ({ container, getState, webviewRef }) => {
-  let inputRef = useRef(null);
-  const [finderIsDisplayed, displayFinder] = useState(false);
-  const [s] = useRecoilState(TileState);
+export default () => {
+  let inputRef: any = useRef(null)
+  const [finderIsDisplayed, displayFinder] = useState(false)
 
   useShortcut({
     "find-in-page": () => {
@@ -21,12 +20,12 @@ export default ({ container, getState, webviewRef }) => {
       } else {
         stopFind();
       }
-    },
-  });
-
-  function EscShortcut({ keyCode }) {
-    if (keyCode === 27) {
-      stopFind();
+    }
+  })
+  
+  function EscShortcut({ keyCode }: KeyboardEvent): any{
+    if(keyCode === 27){
+      stopFind()
     }
   }
 
