@@ -20,6 +20,8 @@ import { useShortcut } from "./utils";
 
 import DefaultTileConfig from "../DefaultTileConfig";
 import RedditLauncher from "../RedditLauncher";
+import Tile from "../Tile";
+import TileFocusState from "../TileFocusState";
 
 const config: GoldenLayout.Config = {
   dimensions: {
@@ -42,24 +44,6 @@ const config: GoldenLayout.Config = {
   // content: [{"type":"stack","content":[{"url":"https://wikipedia.org","title":"WebView", "state" : ,"type":"component","componentName":"webview","isClosable":true,"reorderEnabled":true},{"url":"https://wikipedia.org","title":"WebView","type":"component","componentName":"webview","isClosable":true,"reorderEnabled":true},{"url":"https://reddit.com","title":"WebView","type":"component","componentName":"webview","isClosable":true,"reorderEnabled":true},{"url":"https://duckduckgo.com/","title":"WebView","type":"component","componentName":"webview","isClosable":true,"reorderEnabled":true},{"url":"https://out.reddit.com/t3_hkzxpm?app_name=web2x&token=AQAALmYAXwCPZgzaFBVHu-JZnowDe9TLw7qhbtKO_D-p00-osxa8&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DnkGiFpJC9LM&user_id=14496312","title":"WebView","type":"component","componentName":"webview","isClosable":true,"reorderEnabled":true},{"url":"https://wikipedia.org","title":"WebView","type":"component","componentName":"webview","isClosable":true,"reorderEnabled":true},{"url":"https://out.reddit.com/t3_hkz040?app_name=web2x&token=AQAALmYAX2aDU5y7HWxGk5ZMLiHGDbIG_O30WemVxTUUljX5IZyF&url=https%3A%2F%2Fi.imgur.com%2FKha5lEk.jpg&user_id=14496312","title":"WebView","type":"component","componentName":"webview","isClosable":true,"reorderEnabled":true},{"url":"https://out.reddit.com/t3_hkw7ts?app_name=web2x&token=AQAALmYAX-D7uZUpWZy4i5Ax5mxGE6QyOvLiiIyLBJweNi8kLEnk&url=https%3A%2F%2Fi.imgur.com%2FrL3t29H.gifv&user_id=14496312","title":"WebView","type":"component","componentName":"webview","isClosable":true,"reorderEnabled":true},{"url":"about:blank","title":"WebView","type":"component","componentName":"webview","isClosable":true,"reorderEnabled":true},{"url":"about:blank","title":"WebView","type":"component","componentName":"webview","isClosable":true,"reorderEnabled":true}],"isClosable":true,"reorderEnabled":true,"title":"","activeItemIndex":6,"width":100,"height":100}]
 };
 
-const tabManagment = (() => {
-  let lastFocusedTab: Element | null = null;
-  let listeners: ((e: Element) => void)[] = [];
-  const onTabFocused = (e: Element) => {
-    lastFocusedTab = e;
-    listeners.forEach((listener) => listener?.(e));
-  };
-
-  const onFocusedTabChanged = (listener: (e: Element) => void) => {
-    listeners.push(listener);
-  };
-
-  return {
-    onTabFocused,
-    onFocusedTabChanged,
-  };
-})();
-
 const WebtileComponent = function (container: GoldenLayout.Container, state: any) {
   const element = container.getElement()[0];
 
@@ -69,11 +53,9 @@ const WebtileComponent = function (container: GoldenLayout.Container, state: any
 
   ReactDOM.render(
     <RecoilRoot>
-      <WebviewTile
-        onTabFocused={tabManagment.onTabFocused}
-        onFocusedTabChanged={tabManagment.onFocusedTabChanged}
-        {...{ container, state }}
-      />
+      <Tile onFocusTile={TileFocusState.onFocusTile} onFocusedTileChanged={TileFocusState.onFocusedTileChanged}>
+        <WebviewTile {...{ container, state }} />
+      </Tile>
     </RecoilRoot>,
     element
   );

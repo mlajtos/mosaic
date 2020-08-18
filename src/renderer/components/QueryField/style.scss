@@ -3,7 +3,6 @@
 $height: 2.5rem;
 
 .QueryField {
-  background-color: colors.$activeTileBackground;
   color: colors.$activeTileForeground;
   width: 100%;
   display: flex;
@@ -13,7 +12,7 @@ $height: 2.5rem;
     // width: 100%;
     padding: 0 1rem;
     border: none;
-    background: colors.$activeTileBackground;
+    background: transparent;
     color: colors.$activeTileForeground;
     text-overflow: ellipsis;
     outline: none;

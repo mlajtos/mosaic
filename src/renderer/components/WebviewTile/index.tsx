@@ -6,7 +6,6 @@ import QueryField from "../QueryField";
 import Toolbar from "../Toolbar";
 import DomainInfo from "../DomainInfo";
 import Webview from "../Webview";
-import Tile from "../Tile";
 import ToolbarButton from "../ToolbarButton";
 import PageState from "../PageState";
 import Tab from "../Tab";
@@ -14,26 +13,20 @@ import Tab from "../Tab";
 import { useEventListener } from "./utils";
 import { remote } from "electron";
 import DefaultTileConfig from "../DefaultTileConfig";
-import TabState from "../TabState";
 
 const Space = () => <div style={{ width: "0.5rem" }} />;
 
 export default ({
   container,
   state,
-  onTabFocused,
-  onFocusedTabChanged,
 }: {
   container: GoldenLayout.Container;
   state: any;
-  onTabFocused?: (e: Element) => void;
-  onFocusedTabChanged: (callback: (e: Element) => void) => void;
 }) => {
   const webviewRef = useRef<HTMLWebViewElement>(null);
   const [queryHasFocus, setQueryHasFocus] = useState(true);
 
   const [{ url, query }, setPageState] = useRecoilState(PageState);
-  const [{ hasFocus }, setTabState] = useRecoilState(TabState);
 
   useEffect(() => {
     // @ts-ignore
@@ -69,7 +62,7 @@ export default ({
     const zoomFactor = await webContents.executeJavaScript(
       "document.documentElement.clientWidth / document.documentElement.scrollWidth"
     );
-    console.log(zoomFactor);
+
     if (zoomFactor > 0) {
       webContents.zoomFactor = zoomFactor;
     }
@@ -77,19 +70,8 @@ export default ({
     // setPageState(page => ({ ...page, query: e.target.contentWindow.location.href}));
   });
 
-  const tileRef = useRef<Element>();
-
-  onFocusedTabChanged((e) => {
-    setTabState({ hasFocus: e === tileRef.current });
-  });
-
   return (
-    <Tile
-      ref={tileRef}
-      onFocus={(e) => {
-        onTabFocused?.(e);
-      }}
-    >
+    <>
       <Tab for={container} />
       <Toolbar>
         {queryHasFocus ? (
@@ -135,6 +117,6 @@ export default ({
         )}
       </Toolbar>
       <Webview $ref={webviewRef} url={url} />
-    </Tile>
+      </>
   );
 };

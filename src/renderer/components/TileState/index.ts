@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
 export default atom({
-  key: "tabState",
+  key: "tileState",
   default: {
     hasFocus: false,
   },

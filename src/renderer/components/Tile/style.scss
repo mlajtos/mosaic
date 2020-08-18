@@ -12,4 +12,8 @@
     background-color: colors.$activeTileBackground;
     // minimal height for webview is fixed to 150px
     overflow: hidden;
+
+    &.focused {
+      background: colors.$focusedTileBackground;
+    }
 }

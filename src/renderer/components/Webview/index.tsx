@@ -1,4 +1,4 @@
-import React, { useRef, RefObject, useMemo } from "react";
+import React, { useRef, RefObject } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 
 import "./style.scss";

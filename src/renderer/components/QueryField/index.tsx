@@ -53,7 +53,7 @@ export default ({
         onFocus={onFocus}
         onBlur={(e) => {
           const outside = !containerRef.current?.contains(e.relatedTarget as HTMLElement);
-          console.log(e.relatedTarget, outside);
+          // console.log(e.relatedTarget, outside);
           if (outside) {
             onBlur?.();
           }
