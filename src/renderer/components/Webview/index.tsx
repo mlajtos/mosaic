@@ -1,4 +1,4 @@
-import React, { useRef, RefObject } from "react";
+import React, { useRef, RefObject, useMemo } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 
 import "./style.scss";
@@ -32,6 +32,6 @@ export default ({ $ref, url }: { $ref: RefObject<HTMLWebViewElement>; url: strin
   // }, [innerRef]);
 
   return (
-    <webview ref={ref} className="Webview" src={url} webpreferences="scrollBounce,defaultEncoding=utf-8" onFocus={(e) => console.log(e.target)} />
+    <webview ref={ref} className="Webview" src={url} webpreferences="scrollBounce,defaultEncoding=utf-8" />
   );
 };

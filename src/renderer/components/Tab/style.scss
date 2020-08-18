@@ -35,8 +35,11 @@
       inset 0px -0.5px 0px 0px rgba(26, 255, 124, 0), inset -0.5px 0px 0px 0px rgba(90, 90, 90, 0.17),
       inset 0.5px 0px 0px 0px rgba(90, 90, 90, 0.17);
 
-    // google-styled tab
-    // box-shadow: inset 0px 0.5px 0px 0px rgba(255, 0, 0, 0.8), inset 0px -0.5px 0px 0px rgba(26, 255, 124, 0.8), inset -0.5px 0px 0px 0px rgba(0, 13, 255, 0.8), inset 0.5px 0px 0px 0px rgba(240, 255, 0, 0.8);
+    &.focused {
+      box-shadow: inset 0px 0.5px 0px 0px red,
+        inset 0px -0.5px 0px 0px rgba(26, 255, 124, 0), inset -0.5px 0px 0px 0px rgba(90, 90, 90, 0.17),
+        inset 0.5px 0px 0px 0px rgba(90, 90, 90, 0.17);
+    }
   }
 
   .lm_tab:not(.lm_active) & {
@@ -45,6 +48,11 @@
     background-color: transparent;
     transition: all 0.2s ease-out;
     filter: contrast(0.9) brightness(0.9) opacity(0.8);
+  }
+
+  // do not draw separator line for the last tab in stack
+  .lm_tab:not(.lm_active):last-child & {
+    box-shadow: none;
   }
 
   .lm_tab:not(.lm_active):hover & {
