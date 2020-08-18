@@ -16,8 +16,7 @@ async function createMainWindow() {
   const window = new BrowserWindow({
     // cannot access iframes without turning off websecurity
     webPreferences: { nodeIntegration: true, webSecurity: false, webviewTag: true },
-    frame: false,
-    titleBarStyle: "hidden",
+    frame: process.platform !== 'darwin',
     // backgroundColor: "#222222",
     vibrancy: "window"
   });
@@ -27,8 +26,6 @@ async function createMainWindow() {
   // });
 
   // blocker.enableBlockingInSession(session.defaultSession);
-
-  window.maximize();
 
   // spoof useragent
   window.webContents.userAgent =
@@ -191,7 +188,7 @@ async function createMainWindow() {
           label: "Learn More",
           click: async () => {
             const { shell } = require("electron");
-            await shell.openExternal("https://electronjs.org");
+            await shell.openExternal("https://github.com/mlajtos/mosaic");
           },
         },
       ],
