@@ -34,7 +34,7 @@ Every now and then, a decision has to be made on how to proceed with the impleme
 
 ## Layered rendering
 
-**Problem:** `golden-layout` library moves container items in the DOM hierarchy. `webview` refreshes itself when it is moved in the DOM, so it must have stable rendering place in the DOM hierarchy.
+**Problem:** `golden-layout` library moves container items in the DOM hierarchy. `webview` refreshes itself when it is moved in the DOM, so it must have stable rendering place in the DOM hierarchy. It is a [known issue](https://github.com/golden-layout/golden-layout/search?q=iframe&type=Issues) of Golden Layout.
 
 **Solution:** `Tile` and `TileProxy` are coupled components – `TileProxy` is being moved in the DOM by the `golden-layout` lib, and its position and dimensions are mirrored to the `Tile` component. All `Tile`s are rendered in the same container named `TileContainer` outside of the layout via `React.Portal`. All `Tile`s (and therefore `webview`s) have stable (1-level deep) rendering position while they are virtually placed in a deeply-nested hierarchy of `rows`/`columns`/`stacks`.
 
