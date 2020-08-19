@@ -25,8 +25,11 @@ export default (() => {
     listeners.push(listener);
   };
 
+  const getLastFocusedTile = () => lastFocusedTab;
+
   return {
     onFocusTile,
     onFocusedTileChanged,
+    getLastFocusedTile
   };
 })();

@@ -53,7 +53,7 @@ const WebtileComponent = function (container: GoldenLayout.Container, state: any
 
   ReactDOM.render(
     <RecoilRoot>
-      <Tile onFocusTile={TileFocusState.onFocusTile} onFocusedTileChanged={TileFocusState.onFocusedTileChanged}>
+      <Tile {...TileFocusState}>
         <WebviewTile {...{ container, state }} />
       </Tile>
     </RecoilRoot>,
@@ -101,7 +101,18 @@ export default () => {
       // activeTile
     },
     "close-tab": () => {
-      alert("TODO: ⌘W to close tab");
+      const targetContainer = TileFocusState.getLastFocusedTile()?.parentNode;
+      const root = layout.current?.root!;
+
+      const targetItems = root.getItemsByFilter((item) => {
+        // BUG in GL: `ContentItem.element` is for some reason of type `GoldenLayout.Container`
+        // @ts-ignore
+        const containerElement: Element = item.element[0];
+        return containerElement.firstChild === targetContainer;
+      });
+
+      const targetItem = targetItems?.[0];
+      targetItem.remove();
     },
   });
 
