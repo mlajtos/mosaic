@@ -47,7 +47,7 @@ const config: GoldenLayout.Config = {
 const WebtileComponent = function (container: GoldenLayout.Container, state: any) {
   const element = container.getElement()[0];
 
-  container.on("close", () => {
+  container.on("destroy", () => {
     ReactDOM.unmountComponentAtNode(element);
   });
 
