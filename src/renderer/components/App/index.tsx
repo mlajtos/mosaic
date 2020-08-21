@@ -95,10 +95,18 @@ export default () => {
 
   useShortcut({
     "new-tab": () => {
-      // FIX: actually new top-level child, not new tab
-      layout.current?.root.contentItems[0].addChild(DefaultTileConfig());
-      // const activeTile = findActiveTile(layout.current)
-      // activeTile
+      const targetContainer = TileFocusState.getLastFocusedTile()?.parentNode!;
+      const root = layout.current?.root!;
+
+      const targetItems = root.getItemsByFilter((item) => {
+        // BUG in GL: `ContentItem.element` is for some reason of type `GoldenLayout.Container`
+        // @ts-ignore
+        const containerElement: Element = item.element[0];
+        return item.isStack && containerElement.contains(targetContainer);
+      });
+
+      const targetItem = targetItems?.[0];
+      targetItem.addChild(DefaultTileConfig());
     },
     "close-tab": () => {
       const targetContainer = TileFocusState.getLastFocusedTile()?.parentNode;
