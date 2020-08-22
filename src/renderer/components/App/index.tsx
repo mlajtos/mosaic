@@ -105,8 +105,8 @@ export default () => {
         return item.isStack && containerElement.contains(targetContainer);
       });
 
-      const targetItem = targetItems?.[0];
-      targetItem.addChild(DefaultTileConfig());
+      const targetItem = targetItems?.[0] ?? root;
+        targetItem?.addChild?.(DefaultTileConfig());
     },
     "close-tab": () => {
       const targetContainer = TileFocusState.getLastFocusedTile()?.parentNode;
@@ -120,7 +120,7 @@ export default () => {
       });
 
       const targetItem = targetItems?.[0];
-      targetItem.remove();
+      targetItem?.remove?.();
     },
   });
 
