@@ -48,6 +48,7 @@ export default ({
       <input
         ref={inputRef}
         value={value}
+        placeholder="Enter URL or search terms..."
         onChange={(e) => onChange(e.target.value)}
         onMouseUp={(e) => e.preventDefault()}
         onFocus={onFocus}
