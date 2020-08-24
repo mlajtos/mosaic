@@ -1,33 +1,35 @@
 "use strict";
 
-import { app, BrowserWindow, session } from "electron";
+import { app, BrowserWindow, } from "electron";
 import * as path from "path";
-import { promises as fs } from "fs";
 import { format as formatUrl } from "url";
-import { ElectronBlocker, fullLists, Request } from "@cliqz/adblocker-electron";
-import fetch from "cross-fetch"; // required 'fetch'
-import windowStateKeeper from 'electron-window-state';
+import windowStateKeeper from "electron-window-state";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
+const isMac = process.platform === "darwin";
 
 // global reference to mainWindow (necessary to prevent window from being garbage collected)
 let mainWindow;
 
 async function createMainWindow() {
-  let mainWindowState = windowStateKeeper({
+  const mainWindowState = windowStateKeeper({
     defaultWidth: 750,
-    defaultHeight: 750
+    defaultHeight: 750,
   });
+
   const window = new BrowserWindow({
     // cannot access iframes without turning off websecurity
     webPreferences: { nodeIntegration: true, webSecurity: false, webviewTag: true },
-    frame: process.platform !== 'darwin',
+    frame: isMac,
+    titleBarStyle: isMac ? "hidden" : "default",
     x: mainWindowState.x,
     y: mainWindowState.y,
     height: mainWindowState.height,
     width: mainWindowState.width,
-    vibrancy: "window"
-   });
+    vibrancy: "window",
+  });
+
+  mainWindowState.manage(window);
 
   // ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
   //   blocker.enableBlockingInSession(session.defaultSession);
@@ -91,8 +93,6 @@ async function createMainWindow() {
 
   const { app, Menu } = require("electron");
 
-  const isMac = process.platform === "darwin";
-
   const template = [
     // { role: 'appMenu' }
     ...(isMac
@@ -136,13 +136,13 @@ async function createMainWindow() {
     {
       label: "Edit",
       submenu: [
-          {
-              label: "Find in page",
-              accelerator: "CmdOrCtrl+F",
-              click: () => {
-                  window.webContents.send("shortcut", "find-in-page");
-              },
+        {
+          label: "Find in page",
+          accelerator: "CmdOrCtrl+F",
+          click: () => {
+            window.webContents.send("shortcut", "find-in-page");
           },
+        },
         { role: "undo" },
         { role: "redo" },
         { type: "separator" },
