@@ -1,27 +1,33 @@
-# Mosaic – A Tiling Web Browser
-
-Web browser that can display multiple web pages at the same time in one shared window. [Why this name?](https://github.com/mlajtos/mosaic/blob/master/DesignDecisions.md#mosaic)
-
-[![](showcase/Mosaic-0.0.1.gif)](showcase/Mosaic-0.0.1.gif)
+<div align="center">
+	<img src="showcase/Mosaic-0.0.1.gif" height="200">
+	<h1>Mosaic</h1>
+	<p>
+		<b>Web browser that can display multiple web pages at the same time in one shared window.</b>
+	</p>
+    <br>
+</div>
 
 ## Features
 
 - [x] Documented [Design Decisions](DesignDecisions.md)
-- [x] Pure Electron app, i.e. not a forked Chrome/Chromium
+  - [Why the name Mosaic?](https://github.com/mlajtos/mosaic/blob/master/DesignDecisions.md#mosaic)
+- [x] [Blink](https://www.chromium.org/blink) rendering engine
+- [x] Written in Typescript using React
 - [x] Intuitive drag&drop tile managment
-- [x] Built-in search engine ([DDG](https://duckduckgo.com/))
-    - auto suggest while typing
-    - use [!bang](https://duckduckgo.com/bang) for advanced searches
-- [x] Minimalistic look
+- [x] Built-in [DuckDuckGo](https://duckduckgo.com/) search engine
+  - auto suggest while typing
+  - use [!bang](https://duckduckgo.com/bang) for advanced searches
+    - e.g. "!g hello" to google for "hello"
+- [x] Minimalistic dark look
 - [x] Dock
-- [x] Automatic zoom-to-fit
-- [ ] Website thumbnail on tab hover and drag
-- [ ] Familiar shortcuts (⌘T, ⌘W, ⌘L, ⌘←, ⌘→)
+  - drag out icon from dock to make a new window
+- [x] Automatic zoom-to-fit of webpage
+- [x] Familiar shortcuts for tab managment (⌘T, ⌘W)
 - [ ] Built-in privacy
-    - [ ] Adblock ([uBlock Origin](https://github.com/gorhill/uBlock))
-    - [ ] Blocking cookie consent non-sense
-    - [x] No history
-    - [ ] HTTPS everywhere
+  - [ ] Adblock ([uBlock Origin](https://github.com/gorhill/uBlock))
+  - [ ] Blocking cookie consent non-sense
+  - [x] No history
+  - [ ] HTTPS everywhere
 - [ ] [System keychain integration](https://github.com/atom/node-keytar)
 
 ## Download
@@ -31,8 +37,7 @@ Web browser that can display multiple web pages at the same time in one shared w
 
 ## Development
 
-System prerequisites: [Git](https://git-scm.com/), [NodeJS](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/)
-
+Requirements: [Git](https://git-scm.com/), [NodeJS](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/)
 
 Clone repository and install project dependencies:
 
@@ -55,17 +60,24 @@ $ yarn dist
 ```
 
 ## Packaging
-Requirement: [`docker`]().
+
+Requirement: [Docker](https://www.docker.com/).
+
 Run:
+
 ```
 docker run --rm -ti  --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS_TAG|TRAVIS|TRAVIS_REPO_|TRAVIS_BUILD_|TRAVIS_BRANCH|TRAVIS_PULL_REQUEST_|APPVEYOR_|CSC_|GH_|GITHUB_|BT_|AWS_|STRIP|BUILD_')  --env ELECTRON_CACHE="/root/.cache/electron"  --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder"  -v ${PWD}:/project  -v ${PWD##*/}-node-modules:/project/node_modules  -v ~/.cache/electron:/root/.cache/electron  -v ~/.cache/electron-builder:/root/.cache/electron-builder  electronuserland/builder:wine
 ```
+
 Inside the container:
+
 ```
 yarn
 yarn dist:linux_windows
 ```
 
-## Thank you
+## Contributors
 
-[@mdatko](https://github.com/mdatko) for Windows build
+- [@mdatko](https://github.com/mdatko)
+- [@marc2332](https://github.com/marc2332)
+- [@michalklempa](https://github.com/michalklempa)
