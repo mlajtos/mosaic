@@ -1,0 +1,73 @@
+@keyframes opening {
+  from {
+    top: 33px;
+  }
+  to {
+    top: 40px;
+  }
+}
+
+.FindInPageDialog {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  width: 15em;
+
+  animation: opening ease-out 0.15s;
+  background: rgb(57, 57, 57);
+  padding: 0.25rem;
+  position: absolute;
+  top: 40px;
+  right: 2rem;
+  border-radius: 5px;
+  height: 25px;
+
+  & > input {
+    flex: 1;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    border-radius: 3px;
+    border: none;
+    padding: 0.25rem;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    outline: 0;
+    background: rgb(93, 93, 93);
+    color: white;
+    &::-webkit-input-placeholder {
+      color: rgb(190, 190, 190);
+    }
+  }
+
+  & > div.MatchInfo {
+    display: flex;
+    align-items: center;
+    color: white;
+    background: rgb(93, 93, 93);
+    height: 1.75rem;
+    padding: 0 0.2rem;
+
+    & > span {
+      font-size: 0.8rem;
+      opacity: 0.75;
+    }
+  }
+
+  & > button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    width: 25px;
+    margin: auto 0;
+    height: 1.75rem;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(70, 70, 70);
+    & > img {
+      width: 80%;
+    }
+  }
+}

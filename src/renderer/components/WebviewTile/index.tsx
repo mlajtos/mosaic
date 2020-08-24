@@ -9,7 +9,7 @@ import Webview from "../Webview";
 import ToolbarButton from "../ToolbarButton";
 import PageState from "../PageState";
 import Tab from "../Tab";
-import Finder from "../Finder";
+import FindInPageDialog from "../FindInPageDialog";
 
 import { useEventListener } from "./utils";
 import { remote } from "electron";
@@ -109,7 +109,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
             </div>
           </>
         )}
-        <Finder />
+        <FindInPageDialog webviewRef={webviewRef} />
       </Toolbar>
       <Webview $ref={webviewRef} url={url} />
     </>
