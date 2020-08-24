@@ -3,7 +3,7 @@ import useMergedRef from "@react-hook/merged-ref";
 
 import "./style.scss";
 
-export default ({ $ref, url }: { $ref: RefObject<HTMLWebViewElement>; url: string }) => {
+export default function ({ $ref, url }: { $ref: RefObject<HTMLWebViewElement>; url: string }) {
   const innerRef = useRef<HTMLWebViewElement | null>(null);
   const ref = useMergedRef($ref, innerRef);
 
@@ -34,4 +34,4 @@ export default ({ $ref, url }: { $ref: RefObject<HTMLWebViewElement>; url: strin
   return (
     <webview ref={ref} className="Webview" src={url} webpreferences="scrollBounce,defaultEncoding=utf-8" />
   );
-};
+}
