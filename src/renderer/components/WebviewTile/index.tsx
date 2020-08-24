@@ -6,7 +6,6 @@ import QueryField from "../QueryField";
 import Toolbar from "../Toolbar";
 import DomainInfo from "../DomainInfo";
 import Webview from "../Webview";
-import Tile from "../Tile";
 import ToolbarButton from "../ToolbarButton";
 import PageState from "../PageState";
 import Tab from "../Tab";
@@ -17,7 +16,13 @@ import DefaultTileConfig from "../DefaultTileConfig";
 
 const Space = () => <div style={{ width: "0.5rem" }} />;
 
-export default ({ container, state }: { container: GoldenLayout.Container; state: any }) => {
+export default ({
+  container,
+  state,
+}: {
+  container: GoldenLayout.Container;
+  state: any;
+}) => {
   const webviewRef = useRef<HTMLWebViewElement>(null);
   const [queryHasFocus, setQueryHasFocus] = useState(true);
 
@@ -57,7 +62,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
     const zoomFactor = await webContents.executeJavaScript(
       "document.documentElement.clientWidth / document.documentElement.scrollWidth"
     );
-    console.log(zoomFactor)
+
     if (zoomFactor > 0) {
       webContents.zoomFactor = zoomFactor;
     }
@@ -66,7 +71,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
   });
 
   return (
-    <Tile>
+    <>
       <Tab for={container} />
       <Toolbar>
         {queryHasFocus ? (
@@ -112,6 +117,6 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
         )}
       </Toolbar>
       <Webview $ref={webviewRef} url={url} />
-    </Tile>
+      </>
   );
 };

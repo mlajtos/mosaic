@@ -8,6 +8,22 @@
   align-items: center;
   color: color.adjust(colors.$activeTileForeground, $alpha: -0.5);
 
+  flex: 1;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0px 0px 0px 1px #0000000f;
+    height: 20px;
+    border-radius: 5px;
+    padding: 0 0.5em;
+    background: #2f2f2f;
+    cursor: pointer;
+
+    &:hover {
+      background: #3a3a3a;
+    }
+
   img {
     width: 0.8em;
     height: 0.8em;

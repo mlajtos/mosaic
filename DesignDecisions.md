@@ -34,7 +34,7 @@ Every now and then, a decision has to be made on how to proceed with the impleme
 
 ## Layered rendering
 
-**Problem:** `golden-layout` library moves container items in the DOM hierarchy. `webview` refreshes itself when it is moved in the DOM, so it must have stable rendering place in the DOM hierarchy.
+**Problem:** `golden-layout` library moves container items in the DOM hierarchy. `webview` refreshes itself when it is moved in the DOM, so it must have stable rendering place in the DOM hierarchy. It is a [known issue](https://github.com/golden-layout/golden-layout/search?q=iframe&type=Issues) of Golden Layout.
 
 **Solution:** `Tile` and `TileProxy` are coupled components – `TileProxy` is being moved in the DOM by the `golden-layout` lib, and its position and dimensions are mirrored to the `Tile` component. All `Tile`s are rendered in the same container named `TileContainer` outside of the layout via `React.Portal`. All `Tile`s (and therefore `webview`s) have stable (1-level deep) rendering position while they are virtually placed in a deeply-nested hierarchy of `rows`/`columns`/`stacks`.
 
@@ -55,3 +55,9 @@ Every now and then, a decision has to be made on how to proceed with the impleme
 **Problem:** Tab in Golden Layout can display only text with predefined action (close) and is hard to customize.
 
 **Solution:** Hijack DOM node and render there through React.
+
+## Recoil.js – cross-root state sharing
+
+**Problem:** Decision to use Recoil.js was made without a proper research and one particular problem complicates development – ability to share state between React roots. Since Golden Layout is sandwiched between React stuff, this is really pain in the ass.
+
+**Solution:** There is an ongoing work to bring cross-root state sharing ([Recoil-#140](https://github.com/facebookexperimental/Recoil/issues/140)), but it will probably take a while to bring it to production. So far only `TileFocusState` suffers from this, but it will probably gets messy along the way. Also, when the feature lands in Recoil.js, then there is a need to use `atomFamily` for `Tile`s and `Webview`s state.

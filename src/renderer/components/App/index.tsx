@@ -20,6 +20,8 @@ import { useShortcut } from "./utils";
 
 import DefaultTileConfig from "../DefaultTileConfig";
 import RedditLauncher from "../RedditLauncher";
+import Tile from "../Tile";
+import TileFocusState from "../TileFocusState";
 
 const config: GoldenLayout.Config = {
   dimensions: {
@@ -29,10 +31,9 @@ const config: GoldenLayout.Config = {
     showPopoutIcon: false,
     showMaximiseIcon: false,
     // @ts-ignore
-    responsiveMode: 'none',
+    responsiveMode: "none",
     // HACK: prevent GoldenLayout to hide tabs that would not fit, instead rely on the flexbox
-    tabControlOffset: -1000
-
+    tabControlOffset: -1000,
   },
   content: [
     {
@@ -46,13 +47,15 @@ const config: GoldenLayout.Config = {
 const WebtileComponent = function (container: GoldenLayout.Container, state: any) {
   const element = container.getElement()[0];
 
-  container.on("close", () => {
+  container.on("destroy", () => {
     ReactDOM.unmountComponentAtNode(element);
   });
 
   ReactDOM.render(
     <RecoilRoot>
-      <WebviewTile {...{ container, state }} />
+      <Tile {...TileFocusState}>
+        <WebviewTile {...{ container, state }} />
+      </Tile>
     </RecoilRoot>,
     element
   );
@@ -92,13 +95,32 @@ export default () => {
 
   useShortcut({
     "new-tab": () => {
-      // FIX: actually new top-level child, not new tab
-      layout.current?.root.contentItems[0].addChild(DefaultTileConfig());
-      // const activeTile = findActiveTile(layout.current)
-      // activeTile
+      const targetContainer = TileFocusState.getLastFocusedTile()?.parentNode!;
+      const root = layout.current?.root!;
+
+      const targetItems = root.getItemsByFilter((item) => {
+        // BUG in GL: `ContentItem.element` is for some reason of type `GoldenLayout.Container`
+        // @ts-ignore
+        const containerElement: Element = item.element[0];
+        return item.isStack && containerElement.contains(targetContainer);
+      });
+
+      const targetItem = targetItems?.[0] ?? root;
+        targetItem?.addChild?.(DefaultTileConfig());
     },
     "close-tab": () => {
-      alert("TODO: ⌘W to close tab");
+      const targetContainer = TileFocusState.getLastFocusedTile()?.parentNode;
+      const root = layout.current?.root!;
+
+      const targetItems = root.getItemsByFilter((item) => {
+        // BUG in GL: `ContentItem.element` is for some reason of type `GoldenLayout.Container`
+        // @ts-ignore
+        const containerElement: Element = item.element[0];
+        return containerElement.firstChild === targetContainer;
+      });
+
+      const targetItem = targetItems?.[0];
+      targetItem?.remove?.();
     },
   });
 

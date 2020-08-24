@@ -48,12 +48,13 @@ export default ({
       <input
         ref={inputRef}
         value={value}
+        placeholder="Enter URL or search terms..."
         onChange={(e) => onChange(e.target.value)}
         onMouseUp={(e) => e.preventDefault()}
         onFocus={onFocus}
         onBlur={(e) => {
           const outside = !containerRef.current?.contains(e.relatedTarget as HTMLElement);
-          console.log(e.relatedTarget, outside);
+          // console.log(e.relatedTarget, outside);
           if (outside) {
             onBlur?.();
           }

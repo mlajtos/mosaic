@@ -12,6 +12,7 @@ import Spacer from "../Spacer";
 import TabCloseButton from "../TabCloseButton";
 
 import "./style.scss";
+import TileState from "../TileState";
 
 const useForceUpdate = () => useState(null)[1];
 const HStack = ({
@@ -41,6 +42,7 @@ const HStack = ({
 export default ({ for: container }: { for: GoldenLayout.Container }) => {
   const forceUpdate = useForceUpdate();
   const { title, favicons, loading } = useRecoilValue(PageState);
+  const { hasFocus } = useRecoilValue(TileState);
 
   useEffect(() => {
     container.on("tab", forceUpdate);
@@ -55,7 +57,7 @@ export default ({ for: container }: { for: GoldenLayout.Container }) => {
   }
 
   return ReactDOM.createPortal(
-    <div className="Tab">
+    <div className={`Tab ${hasFocus ? "focused" : ""}`}>
       <HStack>
         <TabCloseButton
           onClick={() => {
