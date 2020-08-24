@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { ipcRenderer } from "electron";
+import { ipcRenderer, IpcRendererEvent } from "electron";
 
 export const useShortcut = (shortcuts: Record<string, () => void>, deps: any[] = []) => {
   useEffect(() => {
-    const callback = (event, shortcutName) => {
+    const callback = (event: IpcRendererEvent, shortcutName: string) => {
       shortcuts?.[shortcutName]?.();
     };
 
