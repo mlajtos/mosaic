@@ -8,7 +8,9 @@
 - *focus follow mouse* for tabs – keyboard shortcuts will land in the intended tab
 - shortcut <kbd>⌘T</kbd> for opening a new tab inside focused tab stack
 - shortcut <kbd>⌘W</kbd> for closing a focused tab (works also by hovering over inactive tab)
-- Linux packages (`.deb`, `.rpm`, `.pacman`)
+- find text in page – thx @marc2332
+- restore window position and dimensions – thx @marc2332
+- Linux packages (`.deb`, `.rpm`, `.pacman`) – thx @michalklempa
 
 ### Changed
 
@@ -23,6 +25,7 @@
 
 - prevent webview from jumping up and down when URL bar is focused/blured
 - make shortened URL into Search button when URL is empty
+- non-visible window frame on Windows and Linux – thx @marc2332
 
 ### Security
 
