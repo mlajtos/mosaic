@@ -9,20 +9,24 @@
     "email": "milan.lajtos@me.com",
     "url": "https://github.com/mlajtos"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlajtos/mosaic.git"
+  },
   "scripts": {
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
-    "build": "electron-webpack",
-    "dist:linux_windows": "electron-builder --ia32 --x64 --win --linux",
-    "dist": "yarn compile && yarn dist:linux_windows",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+    "build": "electron-builder -wlm",
+    "dist": "yarn compile && yarn build",
+    "release": "build"
   },
   "build": {
     "appId": "com.github.mlajtos.mosaic",
-    "buildVersion": "0.0.1-01",
+    "buildVersion": "1",
     "files": [
       "build/.*png"
     ],
+    "publish": "github",
     "win": {
       "icon": "build/icon.ico",
       "target": [
