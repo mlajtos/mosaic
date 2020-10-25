@@ -46,7 +46,7 @@ Every now and then, a decision has to be made on how to proceed with the impleme
 
 ## Golden Layout package
 
-**Problem:** Golden Layout from master has a bug/feature which manifests when dragging tabs. After tear, the proxy is created, but the teared tab stays in the header, which is super-confusing.
+**Problem:** Golden Layout from master branch has a bug/feature which manifests when dragging tabs. After tearing the tab, the proxy is created, but the teared tab stays in the header, which is super-confusing.
 
 **Solution:** Version of Golden Layout is fixed to v1.5.9, which is so far the latest stable version on the NPM.
 
@@ -60,4 +60,10 @@ Every now and then, a decision has to be made on how to proceed with the impleme
 
 **Problem:** Decision to use Recoil.js was made without a proper research and one particular problem complicates development – ability to share state between React roots. Since Golden Layout is sandwiched between React stuff, this is really pain in the ass.
 
-**Solution:** There is an ongoing work to bring cross-root state sharing ([Recoil-#140](https://github.com/facebookexperimental/Recoil/issues/140)), but it will probably take a while to bring it to production. So far only `TileFocusState` suffers from this, but it will probably gets messy along the way. Also, when the feature lands in Recoil.js, then there is a need to use `atomFamily` for `Tile`s and `Webview`s state.
+**Solution:** There is an ongoing work to bring cross-root state sharing ([Recoil-#140](https://github.com/facebookexperimental/Recoil/issues/140)), but it will probably take a while to bring it to production. So far only `TileFocusState` suffers from this, but it will probably gets messy along the way. Also, when the feature lands in Recoil.js, then there is a need to use `atomFamily` for `Tile`s and `Webview`s state. Cross-root sharing landed in [0.0.11](https://github.com/facebookexperimental/Recoil/releases/tag/0.0.11).
+
+## Default search engine
+
+**Problem:** Web browser without search capabilities is useless browser. Today, *"to google"* is a synonym for searching on the web. However, Google positioned themselves as data harvesting company that does not guarantee user privacy.
+
+**Solution:** [DuckDuckGo](https://duckduckgo.com/) seems like the best choice right now. It does not track you and therefore does not provide personalized search results. This means that some ambiguous search terms will yield wrong results. Using [bangs](https://duckduckgo.com/bang) (e.g. "!g" for Google) as a deliberate opt-in for user tracking seems like a good tradeoff for precise context-sensitive searching.
