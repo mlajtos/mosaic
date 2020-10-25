@@ -1,11 +1,11 @@
 <div align="center">
-	<img src="showcase/Mosaic-0.0.1.gif">
-	<h1>Mosaic</h1>
-	<p>
-		<b>Web browser that can display multiple web pages at the same time in one shared window. <em>A tiling web browser.</em></b>
-	</p>
+  <img src="showcase/Mosaic-0.0.1.gif">
+  <h1>Mosaic</h1>
+  <p>
+    <b>Web browser that can display multiple web pages at the same time in one shared window. <em>A tiling web browser.</em></b>
+  </p>
     <p>
-        Latest release: <a href="https://github.com/mlajtos/mosaic/releases/tag/v0.0.2">0.0.2</a> <br> <a href="https://github.com/mlajtos/mosaic/releases/tag/v0.0.2">Download</a> · <a href="https://github.com/mlajtos/mosaic/blob/master/CHANGELOG.md">Changelog</a>
+        Latest release: <a href="https://github.com/mlajtos/mosaic/releases/tag/v0.0.3">0.0.3</a> <br> <a href="https://github.com/mlajtos/mosaic/releases/tag/v0.0.3">Download</a> · <a href="https://github.com/mlajtos/mosaic/blob/master/CHANGELOG.md">Changelog</a>
     </p>
     <br>
 </div>
