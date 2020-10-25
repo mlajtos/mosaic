@@ -1,7 +1,7 @@
 {
   "name": "mosaic-browser",
   "productName": "Mosaic",
-  "version": "0.0.3-citest",
+  "version": "0.0.3",
   "license": "MIT",
   "description": "Web browser that can display multiple web pages at the same time in one shared window.",
   "author": {
