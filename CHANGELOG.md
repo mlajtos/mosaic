@@ -14,6 +14,17 @@
 
 ### Security
 
+## [0.0.3](https://github.com/mlajtos/mosaic/releases/tag/v0.0.2) – 2020-10-26
+
+### Added
+
+- add hover indicator to dock items
+- add message when user tries to click on dock item
+
+### Fixed
+
+- unify back/forward arrows across platforms
+
 ## [0.0.2](https://github.com/mlajtos/mosaic/releases/tag/v0.0.2) – 2020-08-24
 
 ### Added
