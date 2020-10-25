@@ -8,20 +8,20 @@ import LayoutContainer, { getLayoutContainer } from "../LayoutContainer";
 import Dock from "../Dock";
 import WebviewTile from "../WebviewTile";
 import Surface from "../Surface";
+import MosaicLauncher from "../MosaicLauncher";
 import GoogleLauncher from "../GoogleLauncher";
 import DuckDuckGoLauncher from "../DuckDuckGoLauncher";
 import WikipediaLauncher from "../WikipediaLauncher";
+import DefaultTileConfig from "../DefaultTileConfig";
+import RedditLauncher from "../RedditLauncher";
+import Tile from "../Tile";
+import TileFocusState from "../TileFocusState";
 
 import "./style.scss";
 import "./base.scss";
 import "./dark-theme.scss";
 
 import { useShortcut } from "./utils";
-
-import DefaultTileConfig from "../DefaultTileConfig";
-import RedditLauncher from "../RedditLauncher";
-import Tile from "../Tile";
-import TileFocusState from "../TileFocusState";
 
 const config: GoldenLayout.Config = {
   dimensions: {
@@ -64,6 +64,7 @@ const WebtileComponent = function (container: GoldenLayout.Container, state: any
 export default () => {
   const layout = useRef<GoldenLayout | null>(null);
 
+  const mosaicLauncher = useRef<HTMLDivElement | null>(null);
   const googleLauncher = useRef<HTMLDivElement | null>(null);
   const duckDuckGoLauncher = useRef<HTMLDivElement | null>(null);
   const wikipediaLauncher = useRef<HTMLDivElement | null>(null);
@@ -126,6 +127,11 @@ export default () => {
 
   useEffect(() => {
     layout.current?.createDragSource(
+      mosaicLauncher.current,
+      DefaultTileConfig({ url: "https://github.com/mlajtos/mosaic" })
+    );
+
+    layout.current?.createDragSource(
       googleLauncher.current,
       DefaultTileConfig({ url: "https://google.com/" })
     );
@@ -149,6 +155,7 @@ export default () => {
   return (
     <div className="Container">
       <Dock>
+        <MosaicLauncher ref={mosaicLauncher} />
         <GoogleLauncher ref={googleLauncher} />
         <DuckDuckGoLauncher ref={duckDuckGoLauncher} />
         <RedditLauncher ref={redditLauncher} />
