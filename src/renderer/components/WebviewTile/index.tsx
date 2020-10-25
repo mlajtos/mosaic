@@ -15,6 +15,9 @@ import { useEventListener } from "./utils";
 import { remote } from "electron";
 import DefaultTileConfig from "../DefaultTileConfig";
 
+import leftArrow from "./left.svg";
+import rightArrow from "./right.svg";
+
 const Space = () => <div style={{ width: "0.5rem" }} />;
 
 export default ({ container, state }: { container: GoldenLayout.Container; state: any }) => {
@@ -89,7 +92,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
                 webviewRef.current?.goBack();
               }}
             >
-              ←
+              <img src={leftArrow} />
             </ToolbarButton>
             <ToolbarButton
               onClick={() => {
@@ -97,7 +100,7 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
                 webviewRef.current?.goForward();
               }}
             >
-              →
+              <img src={rightArrow} />
             </ToolbarButton>
             <Space />
             <div

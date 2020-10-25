@@ -9,21 +9,20 @@
     cursor: pointer;
     padding: 0;
 
-    span {
+    div {
+        box-sizing: border-box;
         width: 2rem;
         height: 2rem;
-        line-height: 2rem;
-        font-size: 1rem;
-        color: #6f6f6f;
+        opacity: 0.5;
+        padding: 0.6rem;
         border-radius: 50%;
-        font-weight: bold;
     }
 
     &:hover {
-
-        span {
-            color: white;
+        
+        div {
             background-color: #0000001f;
+            opacity: 1;
         }
     }
 }
