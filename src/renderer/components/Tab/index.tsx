@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import GoldenLayout from "golden-layout";
 import { useRecoilValue } from "recoil";
 
 import PageState from "../PageState";
 import CollapsibleText from "../CollapsibleText";
-import ReactDOM from "react-dom";
 import Favicon from "../Favicon";
 import PageLoadProgressIndicator from "../PageLoadProgressIndicator";
 import Space from "../Space";
 import Spacer from "../Spacer";
 import TabCloseButton from "../TabCloseButton";
+import TileState from "../TileState";
 
 import "./style.scss";
-import TileState from "../TileState";
 
 const useForceUpdate = () => useState(null)[1];
 const HStack = ({
