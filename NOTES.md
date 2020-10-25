@@ -1,23 +1,25 @@
 # Notes
 
-- [ ] BUG: misplaced tile while and after dragging
-    - repro: horizontal 1:1 layout, start dragging the right one
-- [ ] tile persistance
+- https://www.ianbicking.org/blog/2019/03/firefox-experiments-i-would-have-liked.html
+- colect extensions that does similar thing and compare it to Mosaic model:
+    - https://chrome.google.com/webstore/detail/dualless/bgdpkilkheacbboffppjgceiplijhfpd
+- Tile persistance
     - well, I loose all my tiles when I do a refresh :(
-- [ ] find on a page (⌘F)
-    - I swear when it's missing
-    - might focus URL bar with `[In Page]` pill in front of a blinking cursor and search icon somewhere near-by
+- Find on a page (⌘F)
+    - implemented in a copy cat fashion not to alienate people
+    - instead it might focus URL bar with `[In Page]` pill in front of a blinking cursor and search icon somewhere near-by
     - use via "!inpage" bang
-- [ ] switch tiles by dragging
+- Switch tiles by dragging?
     - alt dragging one tile over the other and releasing, could rearrange tiles so that they will switch the places
     - scenario:
         1. I have screen with Reddit and Work shared as 1:2 (terrible idea, but the idea is you won't fall into uninterupted procrastination cycle if you'll keep disruptor present)
-        2. 
-- [ ] "no tiles" screen
-- [ ] PIP
-- [ ] zen mode – temporary showing only single tile
-- [ ] "+" button for new tab in the stack
-- [ ] visual non-linear history
+        2. Alt-dragging Reddit onto a work tile
+        3. Now I have Reddit 2 times bigger than work (again, keeping the disruptor present)
+- There is no indicator/screen when there is no tile present
+- Picture in Picture? Not for video, but as a floating tile
+- Zen mode – temporary showing only single tile
+- Adding "+" button for new tab in the stack would be nice
+- Visual non-linear history
     - I want to see a high-level nodes-and-edges visualization of my browsing history – it is going to be probably a let down.
 
 ## Inspiration
