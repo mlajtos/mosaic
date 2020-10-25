@@ -2,6 +2,8 @@
   display: flex;
   margin-top: 10px;
   max-width: 70px;
+  cursor: pointer;
+  position: relative;
 
   -webkit-app-region: no-drag;
 
@@ -9,5 +11,18 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+  }
+
+  &:hover {
+    &:before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      background: #dcdcdc29;
+      border-radius: 15px;
+    }
   }
 }

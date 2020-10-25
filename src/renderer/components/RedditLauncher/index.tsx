@@ -6,7 +6,7 @@ import redditIcon from "./reddit.png";
 export default forwardRef<HTMLDivElement>(({}, ref) => {
   return (
     <DockItem ref={ref}>
-      <img src={redditIcon} style={{ pointerEvents: "none" }} />
+      <img src={redditIcon} />
     </DockItem>
   );
 });

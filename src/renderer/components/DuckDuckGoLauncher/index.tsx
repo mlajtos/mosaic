@@ -6,7 +6,7 @@ import googleIcon from "./duckDuckGo.png";
 export default forwardRef<HTMLDivElement>(({}, ref) => {
   return (
     <DockItem ref={ref}>
-      <img src={googleIcon} style={{ pointerEvents: "none" }} />
+      <img src={googleIcon} />
     </DockItem>
   );
 });
