@@ -10,6 +10,34 @@
     <br>
 </div>
 
+## Value proposition
+
+The main value of using Mosaic over Chrome with builtin macOS tiling can be seen on this non-exhaustive list of tasks that often pop up when you want to use web in a tiling fashion:
+
+1. **Task 1** – create a 1:2 splitscreen from a single fullscreen window containing two tabs
+   - Chrome on macOS – [video, 12 seconds](https://www.youtube.com/watch?v=acpdYwx13tM)
+     1. turn-off fullscreen
+     1. tear off one tab into a window
+     1. hold cursor over green (maximise) window button
+     1. select "Tile window to the left side"
+     1. choose the second Chrome window to fill the rest of the screen (right side)
+     1. resize via the splitter between the tiles
+   - Mosaic on macOS – [video, 6 seconds](https://www.youtube.com/watch?v=UBIxEerWKbQ)
+     1. drag out a tab to the wanted place
+        - 🤬 the animation is extremely choppy 
+     1. resize via the splitter between the tiles
+2. **Task 2** – interact with unfocused tile and repeat
+   - Chrome on macOS – [video, 5 seconds](https://www.youtube.com/watch?v=OGHneorb0Xc)
+     1. move cursor over unfocused tile
+     1. click on the unfocused tile to focus it
+     1. click on the interactive element
+     1. [repeat]
+   - Mosaic on macOS – [video, 2 seconds](https://www.youtube.com/watch?v=Ej-0LTTm_yQ)
+     1. move cursor over unfocused tile
+        - 🤬 tile did not change the appearance to communicate focus
+     1. click on the interactive element
+     1. [repeat]
+
 ## Features
 
 - [x] Documented [Design Decisions](DesignDecisions.md)
