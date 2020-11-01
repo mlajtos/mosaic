@@ -78,15 +78,3 @@ Live development
 ```bash
 $ yarn dev
 ```
-
-Create a distribution package for all platforms (Mac, Linux, Windows):
-
-```bash
-$ yarn dist
-```
-
-## Contributors
-
-- [@mdatko](https://github.com/mdatko)
-- [@marc2332](https://github.com/marc2332)
-- [@michalklempa](https://github.com/michalklempa)
