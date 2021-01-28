@@ -70,7 +70,7 @@
     "@types/uuid": "^7.0.4",
     "babel-loader": "^8.1.0",
     "cross-fetch": "^3.0.4",
-    "electron": "8.5.2",
+    "electron": "9.4.0",
     "electron-builder": "^22.7.0",
     "electron-webpack": "^2.8.2",
     "electron-webpack-ts": "^4.0.1",
