@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="showcase/Mosaic-0.0.1.gif">
+  <a href="showcase/Mosaic-0.0.1.mp4"><img src="showcase/Mosaic-0.0.1.gif"></a>
   <h1>Mosaic</h1>
   <p>
     <b>Web browser that can display multiple web pages at the same time in one shared window. <em>A tiling web browser.</em></b>
