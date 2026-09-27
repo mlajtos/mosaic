@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, MenuItemConstructorOptions, shell } from "electron";
+import { app, BrowserWindow, ipcMain, Menu, MenuItemConstructorOptions, net, shell } from "electron";
 import * as path from "path";
 import windowStateKeeper from "electron-window-state";
 
@@ -12,10 +12,8 @@ function createMainWindow() {
   });
 
   const window = new BrowserWindow({
-    // cannot access iframes without turning off websecurity
     webPreferences: {
       preload: path.join(__dirname, "../preload/index.js"),
-      webSecurity: false,
       webviewTag: true,
     },
     frame: isMac,
@@ -182,6 +180,16 @@ function createMainWindow() {
 
   return window;
 }
+
+// search suggestions for the address bar; DuckDuckGo doesn't allow cross-origin requests from the page
+ipcMain.handle("suggest", async (_event, query: string) => {
+  try {
+    const response = await net.fetch(`https://ac.duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`);
+    return response.ok ? await response.json() : null;
+  } catch {
+    return null;
+  }
+});
 
 // webviews can't open windows on their own, the renderer opens a new tab instead
 app.on("web-contents-created", (_event, contents) => {

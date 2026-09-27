@@ -11,10 +11,10 @@ export const useSuggestions = (query: string) => {
         return;
       }
 
-      const response = await fetch(`https://ac.duckduckgo.com/ac/?q=${query}&type=list`);
+      const response = await window.mosaic.suggest(query);
 
-      if (response.ok) {
-        const [echo, results] = await response.json();
+      if (response) {
+        const [echo, results] = response;
         if (echo === query) {
           setSuggestions(results);
           setFocusedSuggestionIndex(-1);

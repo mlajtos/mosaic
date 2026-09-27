@@ -17,6 +17,8 @@ const subscribe =
   };
 
 const api = {
+  // DuckDuckGo suggestions for a query, as [query, suggestions], or null when they can't be fetched
+  suggest: (query: string): Promise<[string, string[]] | null> => ipcRenderer.invoke("suggest", query),
   // menu accelerators, e.g. "new-tab"
   onShortcut: subscribe<string>("shortcut"),
   // a webview wants to open a new window, e.g. a link with target="_blank"
