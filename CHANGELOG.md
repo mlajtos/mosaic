@@ -4,6 +4,20 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.1.0](https://github.com/mlajtos/mosaic/releases/tag/v0.1.0) – 2026-09-27
+
+### Added
+
 - open tiles and tabs are restored after restart
 - tiles can float, and a double-click on the tab bar maximizes a tile
 - hint when there is no tile
@@ -16,17 +30,15 @@
 - light or dark look following the system setting, instead of always dark
 - Electron 44 (was 8)
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
-- resizing tiles no longer gets stuck, leaving pages unclickable
 - close button of the find-in-page dialog was squeezed out of view
-- the tab menu (⋯) closes when its button is clicked again or when a page is clicked
+- search suggestions for queries with characters like `&`
 
 ### Security
+
+- web pages keep their own security headers (Content-Security-Policy was stripped from every page)
+- site isolation is enabled again, and Mosaic's own window no longer disables web security
 
 ## [0.0.3](https://github.com/mlajtos/mosaic/releases/tag/v0.0.2) – 2020-10-26
 

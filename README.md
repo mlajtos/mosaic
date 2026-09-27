@@ -5,7 +5,7 @@
     <b>Web browser that can display multiple web pages at the same time in one shared window. <em>A tiling web browser.</em></b>
   </p>
     <p>
-        Latest release: <a href="https://github.com/mlajtos/mosaic/releases/tag/v0.0.3">0.0.3</a> <br> <a href="https://github.com/mlajtos/mosaic/releases/tag/v0.0.3">Download</a> · <a href="https://github.com/mlajtos/mosaic/blob/master/CHANGELOG.md">Changelog</a>
+        Latest release: <a href="https://github.com/mlajtos/mosaic/releases/tag/v0.1.0">0.1.0</a> <br> <a href="https://github.com/mlajtos/mosaic/releases/tag/v0.1.0">Download</a> · <a href="https://github.com/mlajtos/mosaic/blob/master/CHANGELOG.md">Changelog</a>
     </p>
     <br>
 </div>
