@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-import "./style.scss";
+import "./style.css";
 import defaultFavicon from "./default-favicon.png";
 
 export default ({ source }: { source: string[] }) => {

@@ -1,7 +1,7 @@
 import type { Ref } from "react";
 import type { WebviewTag } from "electron";
 
-import "./style.scss";
+import "./style.css";
 
 export default function ({ ref, src }: { ref: Ref<WebviewTag>; src: string }) {
   return (

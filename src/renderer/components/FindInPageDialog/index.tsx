@@ -5,7 +5,7 @@ import type { WebviewTag } from "electron";
 import { useShortcut } from "../App/utils";
 
 import Cross from "./cross.svg";
-import "./style.scss";
+import "./style.css";
 import { useEventListener } from "../WebviewTile/utils";
 
 type FindInPageState = {

@@ -1,23 +1,19 @@
-@use "../App/colors.scss";
-
-$height: 2rem;
-
 .QueryField {
-  color: colors.$activeTileForeground;
+  --height: 2rem;
+
+  color: var(--active-tile-foreground);
   width: 100%;
   display: flex;
 
   input {
     flex: 1;
-    // width: 100%;
     padding: 0 1rem;
     border: none;
     background: transparent;
-    color: colors.$activeTileForeground;
+    color: var(--active-tile-foreground);
     text-overflow: ellipsis;
     outline: none;
-    user-select: none;
-    height: $height;
+    height: var(--height);
     font-size: 1rem;
     line-height: 1rem;
     user-select: unset;
@@ -25,9 +21,9 @@ $height: 2rem;
 
   .Suggestions {
     position: absolute;
-    background-color: colors.$activeTileBackground;
+    background-color: var(--active-tile-background);
     width: 100%;
-    top: $height;
+    top: var(--height);
 
     .Suggestion {
       padding: 0 1rem;

@@ -1,7 +1,7 @@
 import React from "react";
 import CollapsibleText from "../CollapsibleText";
 
-import "./style.scss";
+import "./style.css";
 
 import locked from "./icons8-lock-26.png";
 import unlocked from "./icons8-unlock-26.png";

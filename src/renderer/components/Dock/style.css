@@ -1,0 +1,15 @@
+#Dock {
+  --traffic-lights-horizontal-offset: 70px;
+  --traffic-lights-vertical-offset: 20px;
+  --horizontal-padding: 10px;
+
+  width: calc(var(--traffic-lights-horizontal-offset) - var(--horizontal-padding) * 2);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: var(--traffic-lights-vertical-offset) var(--horizontal-padding) 0;
+  user-select: none;
+  -webkit-app-region: drag;
+}

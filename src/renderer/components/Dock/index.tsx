@@ -1,6 +1,6 @@
 import DockItem from "../DockItem";
 
-import "./style.scss";
+import "./style.css";
 
 import mosaicIcon from "./mosaic.png";
 import googleIcon from "./google.png";

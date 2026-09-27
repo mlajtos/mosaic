@@ -14,7 +14,7 @@ import PageLoadProgressIndicator from "../PageLoadProgressIndicator";
 
 import { useEventListener, getWebContentsId, useTabIcon } from "./utils";
 
-import "./style.scss";
+import "./style.css";
 import leftArrow from "./left.svg";
 import rightArrow from "./right.svg";
 

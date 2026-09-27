@@ -1,4 +1,4 @@
-// I fucking hate CSS
+/* I fucking hate CSS */
 
 .CollapsibleText {
   overflow: hidden;
@@ -10,5 +10,4 @@
   user-select: none;
   border: none;
   pointer-events: none;
-  // flex: 1;
 }

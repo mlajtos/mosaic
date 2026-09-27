@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./style.scss";
+import "./style.css";
 
 export default ({ icon, onClick }: { icon: string; onClick: (e: React.MouseEvent<HTMLDivElement>) => void }) => {
   return (

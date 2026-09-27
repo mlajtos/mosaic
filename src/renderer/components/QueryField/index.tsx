@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import isUrl from "is-url";
 
-import "./style.scss";
+import "./style.css";
 import { useSuggestions, highlightSuggestion } from "./utils";
 
 const search = {

@@ -6,7 +6,7 @@ import Surface from "../Surface";
 import WebviewTile, { type PageParams } from "../WebviewTile";
 
 import "@danfessler/trellis/style.css";
-import "./style.scss";
+import "./style.css";
 
 import { useShortcut, useFinishInterruptedResizes } from "./utils";
 

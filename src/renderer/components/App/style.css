@@ -1,3 +1,9 @@
+/* shared by the page chrome */
+:root {
+  --active-tile-background: rgb(57, 57, 57);
+  --active-tile-foreground: white;
+}
+
 html,
 body,
 #app, .Container {
