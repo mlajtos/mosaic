@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="showcase/Mosaic-0.0.1.mp4"><img src="showcase/Mosaic-0.0.1.gif"></a>
+  <a href="showcase/Mosaic-0.1.0.mp4"><img src="showcase/Mosaic-0.1.0.gif" alt="Links from a Wikipedia article open as tabs, which are dragged out into tiles next to it"></a>
   <h1>Mosaic</h1>
   <p>
     <b>Web browser that can display multiple web pages at the same time in one shared window. <em>A tiling web browser.</em></b>
