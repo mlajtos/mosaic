@@ -90,4 +90,4 @@ Every now and then, a decision has to be made on how to proceed with the impleme
 
 **Problem:** Focus followed the mouse, so that shortcuts land in the tile under the cursor. Trellis focuses a tile when it is clicked, but clicks inside a `webview` never reach the page hosting it.
 
-**Solution:** Follow Trellis – a tile is focused on click. The main process reports mouse downs inside `webview`s and the tile passes them to Trellis as `focusin`.
+**Solution:** Follow Trellis – a tile is focused on click. The main process reports mouse downs inside `webview`s and the tile replays them to Trellis as `pointerdown`, which also closes an open tab menu.

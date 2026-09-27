@@ -62,12 +62,13 @@ export default () => {
     }
   });
 
-  // Trellis focuses a tile when focus moves into it, but a click inside a webview never reaches this page
+  // A click inside a webview never reaches this page, so Trellis can't focus the tile or close an open
+  // menu. Replay it here as a pointerdown on the webview.
   useEffect(
     () =>
       window.mosaic.onWebviewMouseDown((webContentsId) => {
         if (webContentsId === getWebContentsId(webviewRef.current)) {
-          webviewRef.current?.dispatchEvent(new FocusEvent("focusin", { bubbles: true }));
+          webviewRef.current?.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true }));
         }
       }),
     []

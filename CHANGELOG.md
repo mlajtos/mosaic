@@ -24,6 +24,7 @@
 
 - resizing tiles no longer gets stuck, leaving pages unclickable
 - close button of the find-in-page dialog was squeezed out of view
+- the tab menu (⋯) closes when its button is clicked again or when a page is clicked
 
 ### Security
 
