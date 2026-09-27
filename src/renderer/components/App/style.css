@@ -1,3 +1,8 @@
+/* follow the system appearance, like the workspace does */
+:root {
+  color-scheme: light dark;
+}
+
 html,
 body,
 #app, .Container {
@@ -7,7 +12,8 @@ body,
   margin: 0;
   padding: 0;
   font-size: 14px;
-  background-color: #dfe0e4;
+  /* Trellis' workspace background in light and dark */
+  background-color: light-dark(#dfe0e4, #0c0d0f);
   overflow: hidden;
 }
 

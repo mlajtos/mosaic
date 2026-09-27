@@ -13,7 +13,7 @@
 - new tiling engine – [Trellis](https://trellisui.com)
 - dock items open with a click, as a new tile next to the focused one
 - a tile gets focus when clicked instead of when hovered
-- light look instead of the dark one
+- light or dark look following the system setting, instead of always dark
 - Electron 44 (was 8)
 
 ### Deprecated

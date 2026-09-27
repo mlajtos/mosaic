@@ -21,7 +21,7 @@
       left: -5px;
       right: -5px;
       bottom: -5px;
-      background: #0000001a;
+      background: light-dark(#0000001a, #ffffff1f);
       border-radius: 15px;
     }
   }

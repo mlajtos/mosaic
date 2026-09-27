@@ -43,7 +43,6 @@ export default () => {
       <Surface>
         <Workspace
           ref={workspace}
-          theme="light"
           tokens={tokens}
           tabs={{ fill: true }}
           storageKey="mosaic"
