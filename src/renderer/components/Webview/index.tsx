@@ -32,6 +32,13 @@ export default function ({ $ref, url }: { $ref: RefObject<HTMLWebViewElement>; u
   // }, [innerRef]);
 
   return (
-    <webview ref={ref} className="Webview" src={url} webpreferences="scrollBounce,defaultEncoding=utf-8" />
+    <webview
+      ref={ref}
+      className="Webview"
+      src={url}
+      webpreferences="scrollBounce,defaultEncoding=utf-8"
+      // popups reach the main process, which opens them as tabs; React drops `true` for unknown attributes
+      allowpopups={"true" as unknown as boolean}
+    />
   );
 }

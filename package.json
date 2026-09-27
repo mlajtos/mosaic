@@ -13,18 +13,22 @@
     "type": "git",
     "url": "https://github.com/mlajtos/mosaic.git"
   },
+  "main": "./out/main/index.js",
   "scripts": {
-    "dev": "electron-webpack dev",
-    "compile": "electron-webpack",
+    "dev": "electron-vite dev",
+    "compile": "electron-vite build",
+    "typecheck": "tsc --noEmit",
     "build": "electron-builder -wlm",
-    "dist": "yarn compile && yarn build",
-    "release": "build"
+    "dist": "yarn compile && yarn build"
   },
   "build": {
     "appId": "com.github.mlajtos.mosaic",
     "buildVersion": "1",
+    "directories": {
+      "buildResources": "build"
+    },
     "files": [
-      "build/.*png"
+      "out/**/*"
     ],
     "publish": "github",
     "win": {
@@ -48,42 +52,30 @@
     }
   },
   "dependencies": {
-    "electron-window-state": "^5.0.3",
-    "react-spring": "^8.0.27",
-    "resize-observer-polyfill": "^1.5.1",
-    "source-map-support": "^0.5.19"
+    "electron-window-state": "^5.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
-    "@babel/preset-react": "^7.10.1",
-    "@cliqz/adblocker-electron": "^1.15.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.10",
     "@react-hook/merged-ref": "^1.1.1",
-    "@types/is-url": "^1.2.28",
-    "@types/lodash": "^4.14.155",
-    "@types/react": "^16.9.35",
+    "@types/is-url": "^1.2.32",
+    "@types/jquery": "^3",
+    "@types/node": "^24.0.0",
+    "@types/react": "^16.14.0",
     "@types/react-dom": "^16.9.8",
-    "@types/recoil": "^0.0.0",
-    "@types/uuid": "^7.0.4",
-    "babel-loader": "^8.1.0",
-    "cross-fetch": "^3.0.4",
-    "electron": "8.5.2",
-    "electron-builder": "^22.7.0",
-    "electron-webpack": "^2.8.2",
-    "electron-webpack-ts": "^4.0.1",
+    "@vitejs/plugin-react": "^5.2.0",
+    "electron": "^44.4.5",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
     "golden-layout": "1.5.9",
     "is-url": "^1.2.4",
-    "lodash": "^4.17.19",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "recoil": "^0.0.8",
-    "sass": "^1.26.7",
-    "sass-loader": "^8.0.2",
-    "typescript": "^3.9.3",
-    "uuid": "7.0.3",
-    "webpack": "~4.43.0"
+    "jquery": "^3.7.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "recoil": "0.0.8",
+    "sass": "^1.105.0",
+    "typescript": "^7.0.2",
+    "vite": "^7.3.6"
   }
 }

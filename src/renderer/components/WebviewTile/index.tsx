@@ -12,7 +12,6 @@ import Tab from "../Tab";
 import FindInPageDialog from "../FindInPageDialog";
 
 import { useEventListener } from "./utils";
-import { remote } from "electron";
 import DefaultTileConfig from "../DefaultTileConfig";
 
 import leftArrow from "./left.svg";
@@ -40,31 +39,36 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
     setPageState((state) => ({ ...state, url, favicons: [], query: url }));
   });
   on("will-navigate", ({ url }) => setPageState((page) => ({ ...page, url })));
-  on("new-window", ({ url, disposition }) => {
-    // open new tab
-    const newTab = DefaultTileConfig({ url });
-    container.parent.parent.addChild(newTab);
-    if (disposition === "foreground-tab") {
-      container.parent.parent.setActiveContentItem(
-        container.parent.parent.contentItems[container.parent.parent.contentItems.length - 1]
-      );
-    } else {
-      container.parent.parent.setActiveContentItem(container.parent);
-    }
-  });
+  useEffect(
+    () =>
+      window.mosaic.onOpenUrl(({ webContentsId, url, disposition }) => {
+        // @ts-ignore
+        if (webContentsId !== webviewRef.current?.getWebContentsId()) {
+          return;
+        }
+
+        // open new tab
+        const newTab = DefaultTileConfig({ url });
+        container.parent.parent.addChild(newTab);
+        if (disposition === "foreground-tab") {
+          container.parent.parent.setActiveContentItem(
+            container.parent.parent.contentItems[container.parent.parent.contentItems.length - 1]
+          );
+        } else {
+          container.parent.parent.setActiveContentItem(container.parent);
+        }
+      }),
+    []
+  );
 
   on("page-title-updated", ({ title }) => setPageState((page) => ({ ...page, title })));
   on("did-stop-loading", async (e) => {
-    const webContentsId = e.target.getWebContentsId();
-    const webContents = remote.webContents.fromId(webContentsId);
-    const zoomFactor = await webContents.executeJavaScript(
+    const zoomFactor = await e.target.executeJavaScript(
       "document.documentElement.clientWidth / document.documentElement.scrollWidth"
     );
     if (zoomFactor > 0) {
-      webContents.zoomFactor = zoomFactor;
+      e.target.setZoomFactor(zoomFactor);
     }
-    // setPageState(page => ({ ...page, url: e.target.contentWindow.location.href}));
-    // setPageState(page => ({ ...page, query: e.target.contentWindow.location.href}));
   });
 
   return (

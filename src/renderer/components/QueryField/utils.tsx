@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from "react";
-import fetch from "cross-fetch";
 
 export const useSuggestions = (query: string) => {
   const [focusedSuggestionIndex, setFocusedSuggestionIndex] = useState(-1);

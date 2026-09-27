@@ -1,17 +1,11 @@
-"use strict";
-
-import { app, BrowserWindow, } from "electron";
+import { app, BrowserWindow, Menu, MenuItemConstructorOptions, shell } from "electron";
 import * as path from "path";
-import { format as formatUrl } from "url";
 import windowStateKeeper from "electron-window-state";
 
-const isDevelopment = process.env.NODE_ENV !== "production";
+const isDevelopment = !app.isPackaged;
 const isMac = process.platform === "darwin";
 
-// global reference to mainWindow (necessary to prevent window from being garbage collected)
-let mainWindow;
-
-async function createMainWindow() {
+function createMainWindow() {
   const mainWindowState = windowStateKeeper({
     defaultWidth: 750,
     defaultHeight: 750,
@@ -19,7 +13,11 @@ async function createMainWindow() {
 
   const window = new BrowserWindow({
     // cannot access iframes without turning off websecurity
-    webPreferences: { nodeIntegration: true, webSecurity: false, webviewTag: true },
+    webPreferences: {
+      preload: path.join(__dirname, "../preload/index.js"),
+      webSecurity: false,
+      webviewTag: true,
+    },
     frame: isMac,
     titleBarStyle: isMac ? "hidden" : "default",
     x: mainWindowState.x,
@@ -31,58 +29,32 @@ async function createMainWindow() {
 
   mainWindowState.manage(window);
 
-  // ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
-  //   blocker.enableBlockingInSession(session.defaultSession);
-  // });
-
-  // blocker.enableBlockingInSession(session.defaultSession);
-
   // spoof useragent
   window.webContents.userAgent =
     "Safari: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Safari/605.1.15";
 
   // remove X-Frame-Options and CORS headers
   window.webContents.session.webRequest.onHeadersReceived({ urls: ["*://*/*"] }, (details, callback) => {
-    Object.keys(details.responseHeaders)
+    const responseHeaders = details.responseHeaders ?? {};
+    Object.keys(responseHeaders)
       .filter((x) => ["x-frame-options", "content-security-policy"].includes(x.toLowerCase()))
-      .map((x) => delete details.responseHeaders[x]);
+      .map((x) => delete responseHeaders[x]);
 
     callback({
       cancel: false,
-      responseHeaders: details.responseHeaders,
+      responseHeaders,
     });
-  });
-
-  window.webContents.session.webRequest.onBeforeRequest({ urls: ["*://*/*"] }, (details, callback) => {
-    //console.log(details)
-    callback({ cancel: false });
   });
 
   if (isDevelopment) {
     window.webContents.openDevTools();
   }
 
-  window.webContents.on("new-window", (event) => {
-    console.log(event);
-    // TODO: open new tile
-    //event.preventDefault();
-  });
-
-  if (isDevelopment) {
-    window.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
+  if (process.env.ELECTRON_RENDERER_URL) {
+    window.loadURL(process.env.ELECTRON_RENDERER_URL);
   } else {
-    window.loadURL(
-      formatUrl({
-        pathname: path.join(__dirname, "index.html"),
-        protocol: "file",
-        slashes: true,
-      })
-    );
+    window.loadFile(path.join(__dirname, "../renderer/index.html"));
   }
-
-  window.on("closed", () => {
-    mainWindow = null;
-  });
 
   window.webContents.on("devtools-opened", () => {
     window.focus();
@@ -91,9 +63,7 @@ async function createMainWindow() {
     });
   });
 
-  const { app, Menu } = require("electron");
-
-  const template = [
+  const template: MenuItemConstructorOptions[] = [
     // { role: 'appMenu' }
     ...(isMac
       ? [
@@ -105,12 +75,12 @@ async function createMainWindow() {
               { role: "services" },
               { type: "separator" },
               { role: "hide" },
-              { role: "hideothers" },
+              { role: "hideOthers" },
               { role: "unhide" },
               { type: "separator" },
               { role: "quit" },
             ],
-          },
+          } satisfies MenuItemConstructorOptions,
         ]
       : []),
     {
@@ -150,17 +120,17 @@ async function createMainWindow() {
         { role: "copy" },
         { role: "paste" },
         ...(isMac
-          ? [
+          ? ([
               { role: "pasteAndMatchStyle" },
               { role: "delete" },
               { role: "selectAll" },
               { type: "separator" },
               {
                 label: "Speech",
-                submenu: [{ role: "startspeaking" }, { role: "stopspeaking" }],
+                submenu: [{ role: "startSpeaking" }, { role: "stopSpeaking" }],
               },
-            ]
-          : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
+            ] satisfies MenuItemConstructorOptions[])
+          : ([{ role: "delete" }, { type: "separator" }, { role: "selectAll" }] satisfies MenuItemConstructorOptions[])),
       ],
     },
     // { role: 'viewMenu' }
@@ -168,12 +138,12 @@ async function createMainWindow() {
       label: "View",
       submenu: [
         { role: "reload" },
-        { role: "forcereload" },
-        { role: "toggledevtools" },
+        { role: "forceReload" },
+        { role: "toggleDevTools" },
         { type: "separator" },
-        { role: "resetzoom" },
-        { role: "zoomin" },
-        { role: "zoomout" },
+        { role: "resetZoom" },
+        { role: "zoomIn" },
+        { role: "zoomOut" },
         { type: "separator" },
         { role: "togglefullscreen" },
       ],
@@ -185,8 +155,13 @@ async function createMainWindow() {
         { role: "minimize" },
         { role: "zoom" },
         ...(isMac
-          ? [{ type: "separator" }, { role: "front" }, { type: "separator" }, { role: "window" }]
-          : [{ role: "close" }]),
+          ? ([
+              { type: "separator" },
+              { role: "front" },
+              { type: "separator" },
+              { role: "window" },
+            ] satisfies MenuItemConstructorOptions[])
+          : ([{ role: "close" }] satisfies MenuItemConstructorOptions[])),
       ],
     },
     {
@@ -195,7 +170,6 @@ async function createMainWindow() {
         {
           label: "Learn More",
           click: async () => {
-            const { shell } = require("electron");
             await shell.openExternal("https://github.com/mlajtos/mosaic");
           },
         },
@@ -209,6 +183,18 @@ async function createMainWindow() {
   return window;
 }
 
+// webviews can't open windows on their own, the renderer opens a new tab instead
+app.on("web-contents-created", (_event, contents) => {
+  if (contents.getType() !== "webview") {
+    return;
+  }
+
+  contents.setWindowOpenHandler(({ url, disposition }) => {
+    contents.hostWebContents?.send("open-url", { webContentsId: contents.id, url, disposition });
+    return { action: "deny" };
+  });
+});
+
 // quit application when all windows are closed
 app.on("window-all-closed", () => {
   // on macOS it is common for applications to stay open until the user explicitly quits
@@ -219,22 +205,13 @@ app.on("window-all-closed", () => {
 
 app.on("activate", () => {
   // on macOS it is common to re-create a window even after all windows have been closed
-  if (mainWindow === null) {
-    mainWindow = createMainWindow();
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createMainWindow();
   }
 });
 
 // create main BrowserWindow when electron is ready
-app.on("ready", async () => {
-  mainWindow = await createMainWindow();
-
-  mainWindow.once("ready-to-show", () => {
-    mainWindow.show();
-  });
-});
+app.whenReady().then(createMainWindow);
 
 // cannot access iframe content without this
 app.commandLine.appendSwitch("disable-site-isolation-trials");
-
-// Electron 9 will have it as default, and I am tired of the console message
-app.allowRendererProcessReuse = true;
