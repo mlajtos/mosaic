@@ -1,11 +1,11 @@
-import React, { forwardRef } from "react";
+import React from "react";
 
 import "./style.scss";
 
-export default forwardRef<HTMLDivElement, { children: React.ReactNode }>(({ children }, ref) => {
+export default ({ icon, onClick }: { icon: string; onClick: (e: React.MouseEvent<HTMLDivElement>) => void }) => {
   return (
-    <div ref={ref} className="DockItem" onClick={() => alert("Dock items can be opened by dragging them out of the dock.")}>
-      {children}
+    <div className="DockItem" onClick={onClick}>
+      <img src={icon} />
     </div>
   );
-});
+};

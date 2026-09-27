@@ -1,86 +1,111 @@
-import React, { useRef, useState, useEffect } from "react";
-import GoldenLayout from "golden-layout";
-import { useRecoilState } from "recoil";
+import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { useView } from "@danfessler/trellis-react";
+import type { WebviewTag } from "electron";
 
 import QueryField from "../QueryField";
 import Toolbar from "../Toolbar";
 import DomainInfo from "../DomainInfo";
 import Webview from "../Webview";
 import ToolbarButton from "../ToolbarButton";
-import PageState from "../PageState";
-import Tab from "../Tab";
 import FindInPageDialog from "../FindInPageDialog";
+import Favicon from "../Favicon";
+import PageLoadProgressIndicator from "../PageLoadProgressIndicator";
 
-import { useEventListener } from "./utils";
-import DefaultTileConfig from "../DefaultTileConfig";
+import { useEventListener, getWebContentsId, useTabIcon } from "./utils";
 
+import "./style.scss";
 import leftArrow from "./left.svg";
 import rightArrow from "./right.svg";
 
+// persisted with the layout
+export type PageParams = { url: string };
+
 const Space = () => <div style={{ width: "0.5rem" }} />;
 
-export default ({ container, state }: { container: GoldenLayout.Container; state: any }) => {
-  const webviewRef = useRef<HTMLWebViewElement>(null);
-  const [queryHasFocus, setQueryHasFocus] = useState(true);
-
-  const [{ url, query }, setPageState] = useRecoilState(PageState);
-
-  useEffect(() => {
-    // @ts-ignore
-    setPageState((page) => ({ ...page, url: container._config.url }));
-  }, []);
+export default () => {
+  const view = useView<PageParams>();
+  const webviewRef = useRef<WebviewTag>(null);
+  // the webview navigates by itself after the first load and `params.url` follows it
+  const [initialUrl] = useState(view.params.url);
+  const [queryHasFocus, setQueryHasFocus] = useState(initialUrl === "about:blank");
+  const [{ query, loading, favicons }, setPageState] = useState({
+    query: "",
+    loading: false,
+    favicons: [] as string[],
+  });
+  const tabIcon = useTabIcon(view.id);
 
   const on = useEventListener(webviewRef);
 
   on("did-start-loading", () => setPageState((page) => ({ ...page, loading: true })));
   on("did-stop-loading", () => setPageState((page) => ({ ...page, loading: false })));
   on("page-favicon-updated", ({ favicons }) => setPageState((page) => ({ ...page, favicons })));
-  on("will-navigate", ({ url }) => {
-    setPageState((state) => ({ ...state, url, favicons: [], query: url }));
+  on("page-title-updated", ({ title }) => view.setTitle(title));
+  on("did-navigate", ({ url }) => {
+    view.setParams({ url });
+    setPageState((page) => ({ ...page, favicons: [] }));
   });
-  on("will-navigate", ({ url }) => setPageState((page) => ({ ...page, url })));
+  on("did-navigate-in-page", ({ url, isMainFrame }) => {
+    if (isMainFrame) {
+      view.setParams({ url });
+    }
+  });
+  on("did-stop-loading", async () => {
+    const webview = webviewRef.current!;
+    const zoomFactor = await webview.executeJavaScript(
+      "document.documentElement.clientWidth / document.documentElement.scrollWidth"
+    );
+    if (zoomFactor > 0) {
+      webview.setZoomFactor(zoomFactor);
+    }
+  });
+
+  // Trellis focuses a tile when focus moves into it, but a click inside a webview never reaches this page
   useEffect(
     () =>
-      window.mosaic.onOpenUrl(({ webContentsId, url, disposition }) => {
-        // @ts-ignore
-        if (webContentsId !== webviewRef.current?.getWebContentsId()) {
-          return;
-        }
-
-        // open new tab
-        const newTab = DefaultTileConfig({ url });
-        container.parent.parent.addChild(newTab);
-        if (disposition === "foreground-tab") {
-          container.parent.parent.setActiveContentItem(
-            container.parent.parent.contentItems[container.parent.parent.contentItems.length - 1]
-          );
-        } else {
-          container.parent.parent.setActiveContentItem(container.parent);
+      window.mosaic.onWebviewMouseDown((webContentsId) => {
+        if (webContentsId === getWebContentsId(webviewRef.current)) {
+          webviewRef.current?.dispatchEvent(new FocusEvent("focusin", { bubbles: true }));
         }
       }),
     []
   );
 
-  on("page-title-updated", ({ title }) => setPageState((page) => ({ ...page, title })));
-  on("did-stop-loading", async (e) => {
-    const zoomFactor = await e.target.executeJavaScript(
-      "document.documentElement.clientWidth / document.documentElement.scrollWidth"
-    );
-    if (zoomFactor > 0) {
-      e.target.setZoomFactor(zoomFactor);
-    }
-  });
+  useEffect(
+    () =>
+      window.mosaic.onOpenUrl(({ webContentsId, url, disposition }) => {
+        if (webContentsId !== getWebContentsId(webviewRef.current)) {
+          return;
+        }
+
+        // open new tab next to this one; `view` is from the first render, so ask for its current panel
+        const { workspace, id } = view;
+        const panelId = workspace.view(id)?.panelId;
+        const foreground = disposition === "foreground-tab";
+        workspace.open("webview", {
+          params: { url },
+          placement: panelId ? { into: panelId } : "tab",
+          focus: foreground,
+        });
+        if (!foreground) {
+          workspace.select(id);
+        }
+      }),
+    []
+  );
 
   return (
-    <>
-      <Tab for={container} />
+    <div className="WebviewTile">
+      {tabIcon && createPortal(loading ? <PageLoadProgressIndicator /> : <Favicon source={favicons} />, tabIcon)}
       <Toolbar>
         {queryHasFocus ? (
           <QueryField
             value={query}
             onChange={(query) => setPageState((page) => ({ ...page, query }))}
             onConfirm={(url) => {
-              setPageState((page) => ({ ...page, url, query: url }));
+              // failures show up in the page itself
+              webviewRef.current?.loadURL(url).catch(() => {});
               setQueryHasFocus(false);
             }}
             focused={queryHasFocus}
@@ -92,7 +117,6 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
           <>
             <ToolbarButton
               onClick={() => {
-                // @ts-ignore
                 webviewRef.current?.goBack();
               }}
             >
@@ -100,7 +124,6 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
             </ToolbarButton>
             <ToolbarButton
               onClick={() => {
-                // @ts-ignore
                 webviewRef.current?.goForward();
               }}
             >
@@ -109,16 +132,18 @@ export default ({ container, state }: { container: GoldenLayout.Container; state
             <Space />
             <div
               onClick={() => {
+                const { url } = view.params;
+                setPageState((page) => ({ ...page, query: url === "about:blank" ? "" : url }));
                 setQueryHasFocus(true);
               }}
             >
-              <DomainInfo url={url} />
+              <DomainInfo url={view.params.url} />
             </div>
           </>
         )}
         <FindInPageDialog webviewRef={webviewRef} />
       </Toolbar>
-      <Webview $ref={webviewRef} url={url} />
-    </>
+      <Webview ref={webviewRef} src={initialUrl} />
+    </div>
   );
 };

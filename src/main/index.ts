@@ -193,6 +193,13 @@ app.on("web-contents-created", (_event, contents) => {
     contents.hostWebContents?.send("open-url", { webContentsId: contents.id, url, disposition });
     return { action: "deny" };
   });
+
+  // the renderer never sees pointer events inside a webview, so it can't tell which tile was clicked
+  contents.on("before-mouse-event", (_event, mouse) => {
+    if (mouse.type === "mouseDown") {
+      contents.hostWebContents?.send("webview-mousedown", contents.id);
+    }
+  });
 });
 
 // quit application when all windows are closed

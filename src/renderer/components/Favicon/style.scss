@@ -1,10 +1,7 @@
 .Favicon {
   object-fit: contain;
-  width: 1.3rem;
-  height: 1rem;
-  min-width: 1.3rem;
-  max-width: 1.3rem;
-  align-self: center;
+  width: 16px;
+  height: 16px;
 
   &.default {
     filter: invert(1);

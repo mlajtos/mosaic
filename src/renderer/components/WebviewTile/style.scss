@@ -1,0 +1,9 @@
+@use "../App/colors.scss";
+
+.WebviewTile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: colors.$activeTileBackground;
+}

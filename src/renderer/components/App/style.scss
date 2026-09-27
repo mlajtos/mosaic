@@ -15,8 +15,11 @@ body,
   display: flex;
 }
 
-body.lm_dragging {
-  webview {
-    pointer-events: none;
-  }
+.EmptyWorkspace {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.4);
+  user-select: none;
 }

@@ -21,6 +21,8 @@ const api = {
   onShortcut: subscribe<string>("shortcut"),
   // a webview wants to open a new window, e.g. a link with target="_blank"
   onOpenUrl: subscribe<OpenUrlRequest>("open-url"),
+  // a webview was clicked; the payload is its webContentsId
+  onWebviewMouseDown: subscribe<number>("webview-mousedown"),
 };
 
 export type MosaicApi = typeof api;

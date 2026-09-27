@@ -1,28 +1,28 @@
-import React, { useEffect, useRef } from "react";
-import { useRecoilState, atom } from "recoil";
+import React, { useEffect, useRef, useState } from "react";
+import { useView } from "@danfessler/trellis-react";
+import type { WebviewTag } from "electron";
 
-import TileState from "../TileState";
 import { useShortcut } from "../App/utils";
 
 import Cross from "./cross.svg";
 import "./style.scss";
 import { useEventListener } from "../WebviewTile/utils";
 
-const FindInPageState = atom({
-  key: "findInPageState",
-  default: {
-    isVisible: false,
-    value: "",
-    totalMatches: undefined,
-    activeMatch: undefined,
-  },
-});
+type FindInPageState = {
+  isVisible: boolean;
+  value: string;
+  totalMatches?: number;
+  activeMatch?: number;
+};
 
-export default ({ webviewRef }: { webviewRef: React.RefObject<HTMLWebViewElement> }) => {
+export default ({ webviewRef }: { webviewRef: React.RefObject<WebviewTag | null> }) => {
   let inputRef = useRef<HTMLInputElement>(null);
 
-  const [{ isVisible, value, totalMatches, activeMatch }, setState] = useRecoilState(FindInPageState);
-  const [{ hasFocus }] = useRecoilState(TileState);
+  const [{ isVisible, value, totalMatches, activeMatch }, setState] = useState<FindInPageState>({
+    isVisible: false,
+    value: "",
+  });
+  const { focused: hasFocus } = useView();
 
   useShortcut(
     {
@@ -43,12 +43,10 @@ export default ({ webviewRef }: { webviewRef: React.RefObject<HTMLWebViewElement
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       if (e.shiftKey) {
-        // @ts-ignore
         webviewRef.current?.findInPage(value, { forward: false });
         return;
       }
 
-      // @ts-ignore
       webviewRef.current?.findInPage(value, { forward: true });
       return;
     }
@@ -60,11 +58,9 @@ export default ({ webviewRef }: { webviewRef: React.RefObject<HTMLWebViewElement
 
   useEffect(() => {
     if (value !== "") {
-      // @ts-ignore
       webviewRef.current?.findInPage(value);
     } else {
       if (isVisible) {
-        // @ts-ignore
         webviewRef.current?.stopFindInPage("clearSelection");
       }
     }
@@ -93,7 +89,6 @@ export default ({ webviewRef }: { webviewRef: React.RefObject<HTMLWebViewElement
       activeMatch: undefined,
     }));
 
-    // @ts-ignore
     webviewRef.current?.stopFindInPage("clearSelection");
   };
 
