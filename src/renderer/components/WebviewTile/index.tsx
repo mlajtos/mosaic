@@ -10,6 +10,7 @@ import Webview from "../Webview";
 import ToolbarButton from "../ToolbarButton";
 import FindInPageDialog from "../FindInPageDialog";
 import Favicon from "../Favicon";
+import Icon from "../Icon";
 import PageLoadProgressIndicator from "../PageLoadProgressIndicator";
 
 import { useEventListener, getWebContentsId, useTabIcon } from "./utils";
@@ -120,14 +121,14 @@ export default () => {
                 webviewRef.current?.goBack();
               }}
             >
-              <img src={leftArrow} />
+              <Icon src={leftArrow} />
             </ToolbarButton>
             <ToolbarButton
               onClick={() => {
                 webviewRef.current?.goForward();
               }}
             >
-              <img src={rightArrow} />
+              <Icon src={rightArrow} />
             </ToolbarButton>
             <Space />
             <div

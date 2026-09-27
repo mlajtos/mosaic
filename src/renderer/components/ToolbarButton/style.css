@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     background: transparent;
+    color: inherit;
     user-select: none;
     outline: none;
     cursor: pointer;
@@ -21,7 +22,7 @@
     &:hover {
         
         div {
-            background-color: #0000001f;
+            background-color: color-mix(in srgb, currentColor 12%, transparent);
             opacity: 1;
         }
     }

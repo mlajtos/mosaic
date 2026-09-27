@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 
+import Icon from "../Icon";
+
 import "./style.css";
 import defaultFavicon from "./default-favicon.png";
 
@@ -19,7 +21,9 @@ export default ({ source }: { source: string[] }) => {
     setUrl(defaultFavicon);
   }, []);
 
-  return (
-    <img className={`Favicon ${url === defaultFavicon ? "default" : ""}`} src={url} onError={handleError} />
-  );
+  if (url === defaultFavicon) {
+    return <Icon src={defaultFavicon} />;
+  }
+
+  return <img className="Favicon" src={url} onError={handleError} />;
 };

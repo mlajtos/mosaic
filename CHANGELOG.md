@@ -13,6 +13,7 @@
 - new tiling engine – [Trellis](https://trellisui.com)
 - dock items open with a click, as a new tile next to the focused one
 - a tile gets focus when clicked instead of when hovered
+- light look instead of the dark one
 - Electron 44 (was 8)
 
 ### Deprecated
@@ -20,6 +21,9 @@
 ### Removed
 
 ### Fixed
+
+- resizing tiles no longer gets stuck, leaving pages unclickable
+- close button of the find-in-page dialog was squeezed out of view
 
 ### Security
 

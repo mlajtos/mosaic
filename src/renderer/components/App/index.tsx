@@ -43,7 +43,7 @@ export default () => {
       <Surface>
         <Workspace
           ref={workspace}
-          theme="dark"
+          theme="light"
           tokens={tokens}
           tabs={{ fill: true }}
           storageKey="mosaic"
@@ -66,6 +66,7 @@ export default () => {
   );
 };
 
+// the page background shows through, so the dock and the gaps between tiles share one color
 const tokens = {
-  "--trellis-bg": "rgb(34, 34, 34)",
+  "--trellis-bg": "transparent",
 };

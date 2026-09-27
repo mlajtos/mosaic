@@ -13,6 +13,7 @@
     width: 3px;
     height: 30%;
     border-radius: 100%;
+    background-color: currentColor;
     box-shadow: inset 0 0 0.5px 0.5px black;
     animation: Loader-fade 1s linear infinite;
     animation-play-state: paused;
@@ -69,12 +70,6 @@
 
   &.animating .Blade {
     animation-play-state: running;
-  }
-  &.white .Blade {
-    background-color: #fff;
-  }
-  &.gray .Blade {
-    background-color: #8c8c8c;
   }
   &.large {
     width: 35px;

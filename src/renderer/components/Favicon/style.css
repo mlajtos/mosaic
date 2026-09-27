@@ -2,8 +2,4 @@
   object-fit: contain;
   width: 16px;
   height: 16px;
-
-  &.default {
-    filter: invert(1);
-  }
 }

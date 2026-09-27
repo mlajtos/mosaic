@@ -1,5 +1,6 @@
 import React from "react";
 import CollapsibleText from "../CollapsibleText";
+import Icon from "../Icon";
 
 import "./style.css";
 
@@ -21,7 +22,7 @@ export default ({ url }: { url: string }) => {
       <div className={`DomainInfo`}>
         {isBlank ? (
           <>
-            <img src={search} style={{ filter: "invert(1)" }} />
+            <Icon src={search} />
             <CollapsibleText>Search…</CollapsibleText>
           </>
         ) : (

@@ -50,7 +50,7 @@ The main value of using Mosaic over Chrome with builtin macOS tiling can be seen
   - auto suggest while typing
   - use [!bang](https://duckduckgo.com/bang) for advanced searches
     - e.g. "!g hello" to google for "hello"
-- [x] Minimalistic dark look
+- [x] Minimalistic look
 - [x] Dock
   - click an icon to open it as a new tile
 - [x] Automatic zoom-to-fit of webpage

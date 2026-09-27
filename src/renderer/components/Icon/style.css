@@ -1,0 +1,9 @@
+.Icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}

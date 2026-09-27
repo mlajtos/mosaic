@@ -3,19 +3,20 @@
   font-size: 0.7rem;
   display: flex;
   align-items: center;
-  color: rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0px 0px 0px 1px #0000000f;
+  color: var(--trellis-text-muted);
+  box-shadow: inset 0px 0px 0px 1px var(--trellis-border);
   height: 20px;
   border-radius: 5px;
   padding: 0 0.5em;
-  background: #2f2f2f;
+  background: var(--trellis-tabbar);
   cursor: pointer;
 
   &:hover {
-    background: #3a3a3a;
+    background: color-mix(in srgb, var(--trellis-tabbar), var(--trellis-text) 8%);
   }
 
-  img {
+  img,
+  .Icon {
     width: 0.8em;
     height: 0.8em;
     margin: 0 0.2em;

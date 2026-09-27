@@ -3,6 +3,7 @@ import { useView } from "@danfessler/trellis-react";
 import type { WebviewTag } from "electron";
 
 import { useShortcut } from "../App/utils";
+import Icon from "../Icon";
 
 import Cross from "./cross.svg";
 import "./style.css";
@@ -112,7 +113,7 @@ export default ({ webviewRef }: { webviewRef: React.RefObject<WebviewTag | null>
             </div>
           ) : null}
           <button onClick={stop}>
-            <img src={Cross} />
+            <Icon src={Cross} />
           </button>
         </div>
       ) : null}

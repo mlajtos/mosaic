@@ -1,7 +1,7 @@
 .QueryField {
   --height: 2rem;
 
-  color: var(--active-tile-foreground);
+  color: var(--trellis-text);
   width: 100%;
   display: flex;
 
@@ -10,7 +10,7 @@
     padding: 0 1rem;
     border: none;
     background: transparent;
-    color: var(--active-tile-foreground);
+    color: inherit;
     text-overflow: ellipsis;
     outline: none;
     height: var(--height);
@@ -21,7 +21,7 @@
 
   .Suggestions {
     position: absolute;
-    background-color: var(--active-tile-background);
+    background-color: var(--trellis-panel);
     width: 100%;
     top: var(--height);
 
@@ -31,7 +31,7 @@
       line-height: 1.5rem;
 
       &.focused {
-        background-color: #292929;
+        background-color: var(--trellis-menu-hover);
       }
 
       strong {
