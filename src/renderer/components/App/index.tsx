@@ -8,10 +8,12 @@ import WebviewTile, { type PageParams } from "../WebviewTile";
 import "@danfessler/trellis/style.css";
 import "./style.scss";
 
-import { useShortcut } from "./utils";
+import { useShortcut, useFinishInterruptedResizes } from "./utils";
 
 export default () => {
   const workspace = useRef<WorkspaceHandle>(null);
+
+  useFinishInterruptedResizes();
 
   useShortcut({
     "new-tab": () => {
