@@ -4,7 +4,16 @@
 
 ### Added
 
+- open tiles and tabs are restored after restart
+- tiles can float, and a double-click on the tab bar maximizes a tile
+- hint when there is no tile
+
 ### Changed
+
+- new tiling engine – [Trellis](https://trellisui.com)
+- dock items open with a click, as a new tile next to the focused one
+- a tile gets focus when clicked instead of when hovered
+- Electron 44 (was 8)
 
 ### Deprecated
 

@@ -30,13 +30,13 @@ Every now and then, a decision has to be made on how to proceed with the impleme
 
 **Problem:** First iteration of *Mosaic* used `react-mosaic` layout mechanism for tiling `webview`s. However it did not have a `stack` feature – universally known as *tabs*. Tabs are well understood and really useful UI interaction design pattern – especially in the context of web browsers.
 
-**Solution:** There exist some extensions to `react-mosaic` which supposedly can add tabs, but it was not an officially supported feature. `golden-layout` has half-baked `React` support hacked-in and the codebase is rather old (think `jQuery` era), but new cleaner version 2.0 is on a way. Mosaic uses unreleased 2.0-alpha from git master. (Not true anymore, see [Golden Layout package](#golden-layout-package))
+**Solution:** There exist some extensions to `react-mosaic` which supposedly can add tabs, but it was not an officially supported feature. `golden-layout` has half-baked `React` support hacked-in and the codebase is rather old (think `jQuery` era), but new cleaner version 2.0 is on a way. Mosaic uses unreleased 2.0-alpha from git master. (Not true anymore, see [Golden Layout package](#golden-layout-package) and [Trellis](#trellis))
 
 ## Layered rendering
 
 **Problem:** `golden-layout` library moves container items in the DOM hierarchy. `webview` refreshes itself when it is moved in the DOM, so it must have stable rendering place in the DOM hierarchy. It is a [known issue](https://github.com/golden-layout/golden-layout/search?q=iframe&type=Issues) of Golden Layout.
 
-**Solution:** `Tile` and `TileProxy` are coupled components – `TileProxy` is being moved in the DOM by the `golden-layout` lib, and its position and dimensions are mirrored to the `Tile` component. All `Tile`s are rendered in the same container named `TileContainer` outside of the layout via `React.Portal`. All `Tile`s (and therefore `webview`s) have stable (1-level deep) rendering position while they are virtually placed in a deeply-nested hierarchy of `rows`/`columns`/`stacks`.
+**Solution:** `Tile` and `TileProxy` are coupled components – `TileProxy` is being moved in the DOM by the `golden-layout` lib, and its position and dimensions are mirrored to the `Tile` component. All `Tile`s are rendered in the same container named `TileContainer` outside of the layout via `React.Portal`. All `Tile`s (and therefore `webview`s) have stable (1-level deep) rendering position while they are virtually placed in a deeply-nested hierarchy of `rows`/`columns`/`stacks`. (Not needed anymore, see [Trellis](#trellis))
 
 ## Dock
 
@@ -48,22 +48,46 @@ Every now and then, a decision has to be made on how to proceed with the impleme
 
 **Problem:** Golden Layout from master branch has a bug/feature which manifests when dragging tabs. After tearing the tab, the proxy is created, but the teared tab stays in the header, which is super-confusing.
 
-**Solution:** Version of Golden Layout is fixed to v1.5.9, which is so far the latest stable version on the NPM.
+**Solution:** Version of Golden Layout is fixed to v1.5.9, which is so far the latest stable version on the NPM. (Not true anymore, see [Trellis](#trellis))
 
 ## Tabs rendered by React
 
 **Problem:** Tab in Golden Layout can display only text with predefined action (close) and is hard to customize.
 
-**Solution:** Hijack DOM node and render there through React.
+**Solution:** Hijack DOM node and render there through React. (Not true anymore, see [Trellis](#trellis))
 
 ## Recoil.js – cross-root state sharing
 
 **Problem:** Decision to use Recoil.js was made without a proper research and one particular problem complicates development – ability to share state between React roots. Since Golden Layout is sandwiched between React stuff, this is really pain in the ass.
 
-**Solution:** There is an ongoing work to bring cross-root state sharing ([Recoil-#140](https://github.com/facebookexperimental/Recoil/issues/140)), but it will probably take a while to bring it to production. So far only `TileFocusState` suffers from this, but it will probably gets messy along the way. Also, when the feature lands in Recoil.js, then there is a need to use `atomFamily` for `Tile`s and `Webview`s state. Cross-root sharing landed in [0.0.11](https://github.com/facebookexperimental/Recoil/releases/tag/0.0.11).
+**Solution:** There is an ongoing work to bring cross-root state sharing ([Recoil-#140](https://github.com/facebookexperimental/Recoil/issues/140)), but it will probably take a while to bring it to production. So far only `TileFocusState` suffers from this, but it will probably gets messy along the way. Also, when the feature lands in Recoil.js, then there is a need to use `atomFamily` for `Tile`s and `Webview`s state. Cross-root sharing landed in [0.0.11](https://github.com/facebookexperimental/Recoil/releases/tag/0.0.11). (Not true anymore, see [State](#state))
 
 ## Default search engine
 
 **Problem:** Web browser without search capabilities is useless browser. Today, *"to google"* is a synonym for searching on the web. However, Google positioned themselves as data harvesting company that does not guarantee user privacy.
 
 **Solution:** [DuckDuckGo](https://duckduckgo.com/) seems like the best choice right now. It does not track you and therefore does not provide personalized search results. This means that some ambiguous search terms will yield wrong results. Using [bangs](https://duckduckgo.com/bang) (e.g. "!g" for Google) as a deliberate opt-in for user tracking seems like a good tradeoff for precise context-sensitive searching.
+
+## Trellis
+
+**Problem:** Golden Layout renders every tile into its own React root and moves tiles around in the DOM. Everything else had to work around it – [layered rendering](#layered-rendering), per-tile Recoil roots, a global focus singleton, and tabs hijacked from its DOM. Also, all tiles were lost on restart.
+
+**Solution:** [Trellis](https://trellisui.com) keeps content of every view mounted in one place in the DOM and only repositions it, so `webview`s do not reload when tiles move. All views render into a single React tree through portals. The whole layout is a serializable document, which is persisted to `localStorage`. Trellis is free only for non-commercial use, which is fine for Mosaic, but commercial use of Mosaic needs a Trellis license.
+
+## State
+
+**Problem:** [Recoil](#recoiljs--cross-root-state-sharing) was used mostly to give each tile its own state, and it is not maintained anymore.
+
+**Solution:** The Trellis layout document holds what should survive a restart – tiles, tabs, and the URL and title of every tab. Everything else a page shows (loading, favicon, address bar, find in page) is local state of the page component. The favicon is rendered from there into the tab through a portal, so no shared store is needed.
+
+## Dock opens on click
+
+**Problem:** Trellis has no way to drag something from outside of the layout into it, so dock items can't be dragged out anymore.
+
+**Solution:** Clicking a dock item opens it as a new tile next to the focused tile, animated out of the dock icon. The tile can then be dragged anywhere.
+
+## Focus on click
+
+**Problem:** Focus followed the mouse, so that shortcuts land in the tile under the cursor. Trellis focuses a tile when it is clicked, but clicks inside a `webview` never reach the page hosting it.
+
+**Solution:** Follow Trellis – a tile is focused on click. The main process reports mouse downs inside `webview`s and the tile passes them to Trellis as `focusin`.

@@ -30,6 +30,12 @@
     "files": [
       "out/**/*"
     ],
+    "extraResources": [
+      {
+        "from": "licenses/Trellis-LICENSE-NONCOMMERCIAL.md",
+        "to": "licenses/Trellis-LICENSE-NONCOMMERCIAL.md"
+      }
+    ],
     "publish": "github",
     "win": {
       "icon": "build/icon.ico",

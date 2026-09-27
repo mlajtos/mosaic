@@ -44,14 +44,15 @@ The main value of using Mosaic over Chrome with builtin macOS tiling can be seen
   - [Why the name Mosaic?](https://github.com/mlajtos/mosaic/blob/master/DesignDecisions.md#mosaic)
 - [x] [Blink](https://www.chromium.org/blink) rendering engine
 - [x] Written in Typescript using React
-- [x] Intuitive drag&drop tile managment
+- [x] Intuitive drag&drop tile managment, built on [Trellis](https://trellisui.com)
+  - tiles are restored after restart
 - [x] Built-in [DuckDuckGo](https://duckduckgo.com/) search engine
   - auto suggest while typing
   - use [!bang](https://duckduckgo.com/bang) for advanced searches
     - e.g. "!g hello" to google for "hello"
 - [x] Minimalistic dark look
 - [x] Dock
-  - drag out icon from dock to make a new tab
+  - click an icon to open it as a new tile
 - [x] Automatic zoom-to-fit of webpage
 - [x] Familiar shortcuts for tab managment (⌘T, ⌘W)
 - [ ] Built-in privacy
@@ -78,3 +79,13 @@ Live development
 ```bash
 $ yarn dev
 ```
+
+Type checking
+
+```bash
+$ yarn typecheck
+```
+
+## License
+
+Mosaic is [MIT](LICENSE) licensed. It uses [Trellis](https://github.com/DanFessler/trellis) by Dan Fessler for its tiling, which is free for non-commercial use only; see [its license](licenses/Trellis-LICENSE-NONCOMMERCIAL.md). Using Mosaic commercially requires a [Trellis commercial license](https://github.com/DanFessler/trellis/blob/main/LICENSE.md).
