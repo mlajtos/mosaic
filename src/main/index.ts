@@ -31,19 +31,6 @@ function createMainWindow() {
   window.webContents.userAgent =
     "Safari: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Safari/605.1.15";
 
-  // remove X-Frame-Options and CORS headers
-  window.webContents.session.webRequest.onHeadersReceived({ urls: ["*://*/*"] }, (details, callback) => {
-    const responseHeaders = details.responseHeaders ?? {};
-    Object.keys(responseHeaders)
-      .filter((x) => ["x-frame-options", "content-security-policy"].includes(x.toLowerCase()))
-      .map((x) => delete responseHeaders[x]);
-
-    callback({
-      cancel: false,
-      responseHeaders,
-    });
-  });
-
   if (isDevelopment) {
     window.webContents.openDevTools();
   }
@@ -228,5 +215,3 @@ app.on("activate", () => {
 // create main BrowserWindow when electron is ready
 app.whenReady().then(createMainWindow);
 
-// cannot access iframe content without this
-app.commandLine.appendSwitch("disable-site-isolation-trials");
